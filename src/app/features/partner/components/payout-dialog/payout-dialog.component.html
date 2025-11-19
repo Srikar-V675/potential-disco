@@ -1,0 +1,119 @@
+<div class="payout-dialog">
+  <div class="dialog-header">
+    <h2>Request Payout</h2>
+    <button class="close-btn" (click)="onCancel()">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+
+  <div class="dialog-content">
+    <!-- Amount Section -->
+    <div class="form-section">
+      <label class="form-label">Payout Amount</label>
+      <div class="amount-input-group">
+        <span class="currency">₹</span>
+        <input
+          type="number"
+          class="amount-input"
+          [class.error]="errors()['amount']"
+          [value]="amount()"
+          (input)="amount.set(+$any($event.target).value)"
+          placeholder="0"
+          min="1050"
+          [max]="data.maxAmount"
+        />
+        <button class="max-btn" (click)="setMaxAmount()">MAX</button>
+      </div>
+      <div class="input-info">
+        <span *ngIf="errors()['amount']" class="error-text">{{
+          errors()['amount']
+        }}</span>
+        <span *ngIf="!errors()['amount']" class="hint-text">
+          Available: ₹{{ data.maxAmount.toLocaleString('en-IN') }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Bank Details Section -->
+    <div class="form-section">
+      <h3 class="section-title">Bank Account Details</h3>
+
+      <div class="form-group">
+        <label class="form-label">Account Holder Name</label>
+        <input
+          type="text"
+          class="form-input"
+          [class.error]="errors()['accountHolder']"
+          [value]="bankAccount().accountHolder"
+          (input)="updateBankField('accountHolder', $any($event.target).value)"
+          placeholder="Enter account holder name"
+        />
+        <span *ngIf="errors()['accountHolder']" class="error-text">
+          {{ errors()['accountHolder'] }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Account Number</label>
+        <input
+          type="text"
+          class="form-input"
+          [class.error]="errors()['accountNumber']"
+          [value]="bankAccount().accountNumber"
+          (input)="updateBankField('accountNumber', $any($event.target).value)"
+          placeholder="Enter account number"
+          maxlength="18"
+        />
+        <span *ngIf="errors()['accountNumber']" class="error-text">
+          {{ errors()['accountNumber'] }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">IFSC Code</label>
+        <input
+          type="text"
+          class="form-input"
+          [class.error]="errors()['ifsc']"
+          [value]="bankAccount().ifsc"
+          (input)="updateBankField('ifsc', $any($event.target).value)"
+          placeholder="Enter IFSC code"
+          maxlength="11"
+          style="text-transform: uppercase"
+        />
+        <span *ngIf="errors()['ifsc']" class="error-text">
+          {{ errors()['ifsc'] }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Bank Name</label>
+        <input
+          type="text"
+          class="form-input"
+          [class.error]="errors()['bankName']"
+          [value]="bankAccount().bankName"
+          (input)="updateBankField('bankName', $any($event.target).value)"
+          placeholder="Enter bank name"
+        />
+        <span *ngIf="errors()['bankName']" class="error-text">
+          {{ errors()['bankName'] }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box">
+      <span class="material-icons">info</span>
+      <div>
+        <p><strong>Processing Time:</strong> 1-3 business days</p>
+        <p><strong>Minimum Amount:</strong> ₹1,050</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-actions">
+    <button class="btn-secondary" (click)="onCancel()">Cancel</button>
+    <button class="btn-primary" (click)="onSubmit()">Submit Request</button>
+  </div>
+</div>

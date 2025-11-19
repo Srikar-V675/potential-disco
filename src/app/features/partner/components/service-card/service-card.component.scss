@@ -1,0 +1,171 @@
+.service-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.2s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.service-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.service-card.inactive {
+  background: #f9fafb;
+  opacity: 0.7;
+}
+
+.service-card.inactive .service-title {
+  color: #9ca3af;
+}
+
+.service-info {
+  flex: 1;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.service-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.category-badge {
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.service-description {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.service-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.meta-item .label {
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+  margin-right: 6px;
+}
+
+.price {
+  font-weight: 600;
+  color: #111827;
+}
+
+.discount {
+  color: #10b981;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.service-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.active-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  transition: all 0.2s ease;
+}
+
+.action-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #6b7280;
+}
+
+.action-btn:hover {
+  background: #e5e7eb;
+}
+
+.edit-btn:hover {
+  background: #dbeafe;
+}
+
+.edit-btn:hover mat-icon {
+  color: #2563eb;
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+}
+
+.delete-btn:hover mat-icon {
+  color: #dc2626;
+}
+
+.offer-badge {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .service-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .service-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .service-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

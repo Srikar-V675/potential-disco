@@ -1,0 +1,108 @@
+<!-- src/app/features/partner/pages/bookings/bookings.component.html -->
+
+<div class="page-layout">
+  <app-sidebar [activePage]="'bookings'"></app-sidebar>
+
+  <main class="page-content">
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="header-content">
+        <h1>My Bookings</h1>
+        <p class="subtitle">Manage and track all your service bookings</p>
+      </div>
+    </header>
+
+    <!-- Search and Filter Bar -->
+    <div class="search-filter-bar">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          matInput
+          placeholder="Search by client name, service, or booking ID..."
+          [value]="searchQuery"
+          (input)="onSearchChange($event)"
+        />
+      </mat-form-field>
+
+      <div class="time-filter-static">
+        <span>All Time</span>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button
+        class="tab"
+        [class.active]="selectedFilter === 'all'"
+        (click)="onFilterChange('all')"
+      >
+        All ({{ totalBookings }})
+      </button>
+      <button
+        class="tab"
+        [class.active]="selectedFilter === 'pending'"
+        (click)="onFilterChange('pending')"
+      >
+        Pending ({{ getPendingCount() }})
+      </button>
+      <button
+        class="tab"
+        [class.active]="selectedFilter === 'upcoming'"
+        (click)="onFilterChange('upcoming')"
+      >
+        Upcoming ({{ getUpcomingCount() }})
+      </button>
+      <button
+        class="tab"
+        [class.active]="selectedFilter === 'completed'"
+        (click)="onFilterChange('completed')"
+      >
+        Completed ({{ completedBookings }})
+      </button>
+      <button
+        class="tab"
+        [class.active]="selectedFilter === 'cancelled'"
+        (click)="onFilterChange('cancelled')"
+      >
+        Cancelled ({{ cancelledBookings }})
+      </button>
+    </div>
+
+    <!-- Bookings List -->
+    <section class="bookings-section">
+      <!-- Loading State -->
+      <div class="loading-state" *ngIf="isLoading">
+        <mat-icon class="spinner">refresh</mat-icon>
+        <p>Loading your bookings...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div
+        class="empty-state"
+        *ngIf="!isLoading && filteredBookings.length === 0"
+      >
+        <mat-icon>event_busy</mat-icon>
+        <h3>No bookings found</h3>
+        <p *ngIf="searchQuery || selectedFilter !== 'all'">
+          Try adjusting your search or filter criteria
+        </p>
+        <p *ngIf="!searchQuery && selectedFilter === 'all'">
+          Your bookings will appear here once customers book your services
+        </p>
+      </div>
+
+      <!-- Bookings Grid -->
+      <div
+        class="bookings-grid"
+        *ngIf="!isLoading && filteredBookings.length > 0"
+      >
+        <app-booking-card
+          *ngFor="let booking of filteredBookings"
+          [booking]="booking"
+          (statusChange)="onStatusChange($event)"
+        >
+        </app-booking-card>
+      </div>
+    </section>
+  </main>
+</div>

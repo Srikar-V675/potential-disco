@@ -1,0 +1,289 @@
+<div class="earnings-layout">
+  <app-sidebar [activePage]="'earnings'"></app-sidebar>
+
+  <main class="earnings-page">
+    <!-- Header -->
+    <div class="page-header">
+      <div>
+        <h1>Earnings & Payouts</h1>
+        <p class="subtitle">Track your earnings and manage payouts</p>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading()" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading earnings data...</p>
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!loading() && summary()" class="earnings-content">
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <span class="material-icons">trending_up</span>
+          </div>
+          <div class="stat-info">
+            <p class="stat-label">Total Earnings</p>
+            <h3 class="stat-value">
+              ₹{{ summary()!.totalEarnings.toLocaleString('en-IN') }}
+            </h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <span class="material-icons">account_balance_wallet</span>
+          </div>
+          <div class="stat-info">
+            <p class="stat-label">Available Balance</p>
+            <h3 class="stat-value">
+              ₹{{ summary()!.availableBalance.toLocaleString('en-IN') }}
+            </h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <span class="material-icons">schedule</span>
+          </div>
+          <div class="stat-info">
+            <p class="stat-label">Pending Payment</p>
+            <h3 class="stat-value">
+              ₹{{ getPendingPayment().toLocaleString('en-IN') }}
+            </h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <span class="material-icons">check_circle</span>
+          </div>
+          <div class="stat-info">
+            <p class="stat-label">Last Payout</p>
+            <h3 class="stat-value">
+              ₹{{ getLastPayout().toLocaleString('en-IN') }}
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Request Payout Card -->
+      <div class="payout-card">
+        <div class="payout-header">
+          <h2>Request Payout</h2>
+          <p>Transfer your available balance to your bank account</p>
+        </div>
+
+        <div class="payout-body">
+          <div class="payout-info">
+            <div class="info-row">
+              <span class="info-label">Available for Payout</span>
+              <span class="info-value"
+                >₹{{
+                  summary()!.availableBalance.toLocaleString('en-IN')
+                }}</span
+              >
+            </div>
+            <p class="info-hint">
+              Minimum payout: ₹1,000 • Processing time: 2-3 business days
+            </p>
+          </div>
+
+          <div class="payout-amount-input">
+            <label>Enter Amount</label>
+            <input
+              type="number"
+              [(ngModel)]="payoutAmount"
+              [max]="summary()?.availableBalance || 0"
+              min="1000"
+              placeholder="Enter amount to withdraw"
+            />
+          </div>
+
+          <button
+            class="payout-button"
+            (click)="requestPayout()"
+            [disabled]="
+              !bankAccount() ||
+              payoutAmount < 1000 ||
+              payoutAmount > (summary()?.availableBalance || 0)
+            "
+          >
+            Request Payout
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs-container">
+        <button
+          class="tab"
+          [class.active]="selectedTab() === 'transaction'"
+          (click)="selectTab('transaction')"
+        >
+          Transaction History
+        </button>
+        <button
+          class="tab"
+          [class.active]="selectedTab() === 'payout'"
+          (click)="selectTab('payout')"
+        >
+          Payout History
+        </button>
+      </div>
+
+      <!-- Transaction List -->
+      <div class="transaction-list">
+        <div class="list-header">
+          <h3>
+            {{
+              selectedTab() === 'transaction'
+                ? 'Transaction History'
+                : 'Payout History'
+            }}
+          </h3>
+          <p>
+            {{
+              selectedTab() === 'transaction'
+                ? 'All your earnings and payouts in chronological order'
+                : 'All your payout requests'
+            }}
+          </p>
+        </div>
+
+        <div *ngIf="filteredTransactions.length === 0" class="empty-state">
+          <span class="material-icons">receipt_long</span>
+          <p>No transactions found</p>
+        </div>
+
+        <div class="transaction-items">
+          <div
+            *ngFor="let transaction of filteredTransactions"
+            class="transaction-item"
+          >
+            <div class="transaction-details">
+              <h4>{{ transaction.title }}</h4>
+              <p class="transaction-from">{{ transaction.from }}</p>
+              <div class="transaction-meta">
+                <span class="transaction-date">
+                  {{ formatDate(transaction.dateTime) }}
+                </span>
+                <span
+                  class="transaction-status"
+                  [class.completed]="transaction.type === 'earning'"
+                  [class.pending]="transaction.type === 'payout'"
+                >
+                  {{
+                    transaction.type === 'earning' ? 'Completed' : 'Completed'
+                  }}
+                </span>
+              </div>
+            </div>
+
+            <div
+              class="transaction-amount"
+              [class.positive]="transaction.type === 'earning'"
+              [class.negative]="transaction.type === 'payout'"
+            >
+              {{ transaction.type === 'earning' ? '+' : '-' }}₹{{
+                transaction.amount.toLocaleString('en-IN')
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bank Account Details -->
+      <div class="bank-details-card">
+        <div class="bank-header">
+          <h3>Bank Account Details</h3>
+          <p>Payouts will be transferred to this account</p>
+        </div>
+
+        <div *ngIf="!bankAccount() && !editingBankAccount()" class="no-bank">
+          <p>No bank account added yet</p>
+          <button class="add-bank-btn" (click)="toggleBankEdit()">
+            Add Bank Account
+          </button>
+        </div>
+
+        <div *ngIf="bankAccount() && !editingBankAccount()" class="bank-info">
+          <div class="bank-row">
+            <div class="bank-field">
+              <label>Account Holder</label>
+              <p>{{ bankAccount()!.accountHolder }}</p>
+            </div>
+            <div class="bank-field">
+              <label>Account Number</label>
+              <p>****{{ bankAccount()!.accountNumber.slice(-4) }}</p>
+            </div>
+            <div class="bank-field">
+              <label>IFSC Code</label>
+              <p>{{ bankAccount()!.ifsc }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="editingBankAccount()" class="bank-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label>Account Holder Name</label>
+              <input
+                type="text"
+                [value]="bankForm().accountHolder"
+                (input)="
+                  updateBankField('accountHolder', $any($event.target).value)
+                "
+                placeholder="Enter account holder name"
+              />
+            </div>
+
+            <div class="form-field">
+              <label>Account Number</label>
+              <input
+                type="text"
+                [value]="bankForm().accountNumber"
+                (input)="
+                  updateBankField('accountNumber', $any($event.target).value)
+                "
+                placeholder="Enter account number"
+              />
+            </div>
+
+            <div class="form-field">
+              <label>IFSC Code</label>
+              <input
+                type="text"
+                [value]="bankForm().ifsc"
+                (input)="updateBankField('ifsc', $any($event.target).value)"
+                placeholder="Enter IFSC code"
+                style="text-transform: uppercase"
+              />
+            </div>
+
+            <div class="form-field">
+              <label>Bank Name</label>
+              <input
+                type="text"
+                [value]="bankForm().bankName"
+                (input)="updateBankField('bankName', $any($event.target).value)"
+                placeholder="Enter bank name"
+              />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-cancel" (click)="toggleBankEdit()">
+              Cancel
+            </button>
+            <button class="btn-save" (click)="saveBankAccount()">
+              Save Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

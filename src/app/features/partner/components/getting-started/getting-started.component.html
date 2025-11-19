@@ -1,0 +1,29 @@
+<!-- src/app/features/partner/components/getting-started/getting-started.component.html -->
+
+<div class="guide-card">
+  <div class="guide-header">
+    <h3>Getting Started Guide</h3>
+    <span class="badge">New Partner</span>
+  </div>
+
+  <p class="guide-intro">
+    Follow these steps to maximize your bookings and earnings on UrbanFix.
+  </p>
+
+  <div class="steps-list">
+    <div *ngFor="let step of steps; let i = index" class="step-item">
+      <div class="step-number">
+        <span class="number">{{ i + 1 }}</span>
+        <span class="step-icon">{{ step.icon }}</span>
+      </div>
+      <div class="step-content">
+        <h4>{{ step.title }}</h4>
+        <p>{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <button class="btn-secondary">View Full Guide</button>
+  </div>
+</div>

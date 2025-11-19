@@ -1,0 +1,45 @@
+<a
+  *ngIf="routerLink"
+  [routerLink]="routerLink"
+  class="btn"
+  [class.btn-black]="variant === 'black'"
+  [class.btn-white]="variant === 'white'"
+  [class.disabled]="isDisabled"
+>
+  <span *ngIf="loading" class="material-icons spinner">autorenew</span>
+  <span
+    *ngIf="icon && !loading && iconPosition === 'left'"
+    class="material-icons"
+    >{{ icon }}</span
+  >
+  {{ text }}
+  <span
+    *ngIf="icon && !loading && iconPosition === 'right'"
+    class="material-icons"
+    >{{ icon }}</span
+  >
+</a>
+
+<button
+  *ngIf="!routerLink"
+  [type]="type"
+  class="btn"
+  [class.btn-black]="variant === 'black'"
+  [class.btn-white]="variant === 'white'"
+  [class.disabled]="isDisabled"
+  [disabled]="isDisabled"
+  (click)="handleClick()"
+>
+  <span *ngIf="loading" class="material-icons spinner">autorenew</span>
+  <span
+    *ngIf="icon && !loading && iconPosition === 'left'"
+    class="material-icons"
+    >{{ icon }}</span
+  >
+  {{ text }}
+  <span
+    *ngIf="icon && !loading && iconPosition === 'right'"
+    class="material-icons"
+    >{{ icon }}</span
+  >
+</button>

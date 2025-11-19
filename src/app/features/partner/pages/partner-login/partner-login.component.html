@@ -1,0 +1,58 @@
+<div class="login-page">
+  <div class="login-card">
+    <h2>Welcome Back</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <mat-icon class="input-icon">email</mat-icon>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <mat-icon class="input-icon">lock</mat-icon>
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+          <mat-icon
+            class="toggle-password"
+            (click)="showPassword = !showPassword"
+          >
+            {{ showPassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </div>
+      </div>
+
+      <div class="forgot-password-link">
+        <a routerLink="/partner/forgot-password">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn-signin" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Signing in...' : 'Sign In' }}
+      </button>
+
+      <p class="register-prompt">Don't have an account?</p>
+
+      <button type="button" class="btn-register" routerLink="/partner/register">
+        Register
+      </button>
+
+      <p class="terms">
+        By signing in, you agree to our <a href="#">Terms of Service</a> and
+        <a href="#">Privacy Policy</a>
+      </p>
+    </form>
+  </div>
+</div>

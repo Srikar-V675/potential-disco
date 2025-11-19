@@ -1,0 +1,24 @@
+<div class="category-selection-form">
+  <h2>Select Your Service Categories</h2>
+  <p>
+    Choose all the service categories you can provide. You can add specific
+    services in the next step.
+  </p>
+
+  <div class="category-grid">
+    <div
+      class="category-item"
+      *ngFor="let category of categories"
+      [class.selected]="selectedCategoryIds.has(category.id)"
+      (click)="toggleCategory(category.id)"
+    >
+      <input
+        type="checkbox"
+        [checked]="selectedCategoryIds.has(category.id)"
+        (click)="$event.stopPropagation()"
+      />
+      <mat-icon class="icon">{{ category.icon }}</mat-icon>
+      <span class="name">{{ category.name }}</span>
+    </div>
+  </div>
+</div>

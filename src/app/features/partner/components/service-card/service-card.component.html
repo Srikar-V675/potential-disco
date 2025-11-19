@@ -1,0 +1,65 @@
+<!-- src/app/features/partner/components/service-card/service-card.component.html -->
+
+<div class="service-card" [class.inactive]="!service.active">
+  <div class="service-info">
+    <!-- Title and Category -->
+    <div class="title-section">
+      <h3 class="service-title">{{ service.title }}</h3>
+      <span class="category-badge">{{ getCategoryName() }}</span>
+    </div>
+
+    <!-- Description (if available) -->
+    <p class="service-description" *ngIf="service.description">
+      {{ service.description }}
+    </p>
+
+    <!-- Price & Duration -->
+    <div class="service-meta">
+      <span class="meta-item">
+        <span class="label">Pricing:</span>
+        <span class="original-price" *ngIf="service.hasOffer"
+          >₹{{ service.price }}</span
+        >
+        <span class="price">₹{{ getFinalPrice() }}</span>
+        <span class="discount" *ngIf="service.hasOffer"
+          >({{ service.offerDiscount }}% off)</span
+        >
+      </span>
+      <span class="meta-item">
+        <span class="label">Duration:</span>
+        <span>{{ getDurationText() }}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="service-actions">
+    <!-- Active Toggle -->
+    <div class="active-toggle">
+      <span class="toggle-label">Active</span>
+      <app-toggle
+        [checked]="service.active"
+        (checkedChange)="onToggleActive()"
+      ></app-toggle>
+    </div>
+
+    <!-- Edit Button -->
+    <button class="action-btn edit-btn" (click)="onEdit()" title="Edit service">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <!-- Delete Button -->
+    <button
+      class="action-btn delete-btn"
+      (click)="onDelete()"
+      title="Delete service"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <!-- Offer Badge -->
+    <div class="offer-badge" *ngIf="service.hasOffer">
+      {{ service.offerDiscount }}% OFF
+    </div>
+  </div>
+</div>

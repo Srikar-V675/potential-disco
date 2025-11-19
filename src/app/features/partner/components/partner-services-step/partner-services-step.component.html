@@ -1,0 +1,48 @@
+<div class="services-step-form">
+  <h2>Add Your Services</h2>
+  <p>
+    Define the specific services you offer for each category, including pricing
+    and estimated duration. Each category must have at least one service.
+  </p>
+
+  <div *ngFor="let categoryId of selectedCategories" class="category-accordion">
+    <details>
+      <summary>
+        <div class="category-header">
+          <mat-icon>{{
+            getCategoryById(categoryId)?.icon || 'category'
+          }}</mat-icon>
+          <span class="category-name">{{
+            getCategoryById(categoryId)?.name || categoryId
+          }}</span>
+        </div>
+        <span class="service-count"
+          >{{ servicesByCategory[categoryId].length || 0 }} service(s)</span
+        >
+      </summary>
+
+      <div
+        *ngFor="let service of servicesByCategory[categoryId]; let i = index"
+        class="service-item"
+      >
+        <app-service-form
+          [initialValue]="service"
+          [submitText]="'Update Service'"
+          (save)="onAddService(categoryId, $event)"
+          (cancel)="onRemoveService(categoryId, i)"
+        ></app-service-form>
+        <button (click)="onRemoveService(categoryId, i)" class="remove-service">
+          <mat-icon>delete</mat-icon>
+          Remove
+        </button>
+      </div>
+
+      <app-service-form
+        [submitText]="
+          'Add Service to ' + (getCategoryById(categoryId)?.name || categoryId)
+        "
+        (save)="onAddService(categoryId, $event)"
+      ></app-service-form>
+    </details>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<!-- src/app/features/partner/components/profile-completion/profile-completion.component.html -->
+
+<div class="profile-card">
+  <div class="card-header">
+    <h3>Profile Completion</h3>
+    <span class="percentage">{{ completionPercentage }}%</span>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="completionPercentage"></div>
+    </div>
+  </div>
+
+  <div class="completion-steps">
+    <div
+      *ngFor="let step of completionSteps"
+      class="step-item"
+      [class.completed]="step.completed"
+    >
+      <div class="step-icon">
+        <span *ngIf="step.completed" class="check-icon">✓</span>
+        <span *ngIf="!step.completed" class="pending-icon">○</span>
+      </div>
+      <div class="step-info">
+        <span class="step-label">{{ step.label }}</span>
+        <span class="step-detail" [class.pending]="!step.completed">
+          {{ step.detail }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="completionPercentage < 100" class="completion-cta">
+    <p>Complete your profile to start receiving bookings!</p>
+    <button class="btn-primary">Complete Now</button>
+  </div>
+</div>

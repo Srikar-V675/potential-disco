@@ -1,0 +1,69 @@
+<!-- src/app/features/partner/components/booking-card/booking-card.component.html -->
+
+<div class="booking-card">
+  <div class="card-main">
+    <!-- Header with name, status, and price -->
+    <div class="card-header">
+      <div class="header-left">
+        <h3 class="customer-name">{{ booking.userName }}</h3>
+        <span
+          class="status-badge"
+          [ngClass]="getStatusBadgeClass(booking.status)"
+        >
+          {{ booking.status | titlecase }}
+        </span>
+      </div>
+      <div class="price">₹{{ booking.finalAmount }}</div>
+    </div>
+
+    <!-- Service Name -->
+    <p class="service-name">{{ booking.serviceName }}</p>
+
+    <!-- Booking Details -->
+    <div class="booking-details">
+      <div class="detail-row">
+        <mat-icon>event</mat-icon>
+        <span>{{ booking.date }}</span>
+      </div>
+      <div class="detail-row">
+        <mat-icon>schedule</mat-icon>
+        <span>{{ booking.time }}</span>
+      </div>
+    </div>
+
+    <div class="booking-details">
+      <div class="detail-row">
+        <mat-icon>location_on</mat-icon>
+        <span>{{ booking.address }}</span>
+      </div>
+    </div>
+
+    <div class="booking-details">
+      <div class="detail-row">
+        <mat-icon>phone</mat-icon>
+        <span>{{ booking.phone }}</span>
+      </div>
+    </div>
+
+    <!-- Special Instructions (if any) -->
+    <div class="special-instructions" *ngIf="booking.specialInstructions">
+      <p class="instructions-label">Special Instructions:</p>
+      <p class="instructions-text">{{ booking.specialInstructions }}</p>
+    </div>
+
+    <!-- Status Dropdown -->
+    <div class="status-update" *ngIf="canChangeStatus">
+      <span class="update-label">Update Status:</span>
+      <select
+        class="status-dropdown"
+        [value]="booking.status"
+        (change)="onStatusChange($any($event.target).value)"
+      >
+        <option value="confirmed">Confirmed</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+  </div>
+</div>

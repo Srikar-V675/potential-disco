@@ -1,0 +1,38 @@
+<!-- src/app/shared/components/sidebar/sidebar.component.html -->
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <span class="logo-icon">UF</span>
+      <span class="logo-text">UrbanFix Partners</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul class="menu-list">
+      <li
+        *ngFor="let item of menuItems"
+        class="menu-item"
+        [class.active]="activePage === item.key"
+      >
+        <a
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+          class="menu-link"
+        >
+          <span class="material-icons menu-icon">{{ item.icon }}</span>
+          <span class="menu-label">{{ item.label }}</span>
+          <span *ngIf="item.key === 'bookings'" class="badge">3</span>
+          <span *ngIf="item.key === 'notifications'" class="badge">5</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn">
+      <span class="material-icons">logout</span>
+      Logout
+    </button>
+  </div>
+</aside>

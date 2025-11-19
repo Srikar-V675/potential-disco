@@ -1,0 +1,129 @@
+<!-- src/app/features/partner/dashboard/dashboard.component.html -->
+
+<div class="dashboard-layout">
+  <app-sidebar [activePage]="'dashboard'"></app-sidebar>
+
+  <main class="dashboard-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <h1>Welcome to UrbanFix Partners, {{ partnerName$ | async }}!</h1>
+        <p class="subtitle">
+          Complete your profile to start receiving booking requests from
+          customers.
+        </p>
+      </div>
+    </header>
+
+    <!-- Stats Cards Section -->
+    <section class="stats-section">
+      <ng-container *ngIf="stats$ | async as stats; else loadingStats">
+        <!-- Total Bookings -->
+        <app-stats-card
+          title="Total Bookings"
+          [value]="stats.totalBookings"
+          icon="📅"
+        >
+        </app-stats-card>
+
+        <!-- Services Listed -->
+        <app-stats-card
+          title="Services Listed"
+          [value]="stats.servicesListed"
+          icon="🛠️"
+        >
+        </app-stats-card>
+
+        <!-- Total Earnings -->
+        <app-stats-card
+          title="Total Earnings"
+          [value]="'₹' + stats.totalEarnings.toLocaleString('en-IN')"
+          icon="💰"
+        >
+        </app-stats-card>
+
+        <!-- Average Rating -->
+        <app-stats-card
+          title="Average Rating"
+          [value]="
+            stats.averageRating > 0
+              ? (stats.averageRating | number : '1.1-1') + ' ⭐'
+              : 'No ratings'
+          "
+          icon="⭐"
+        >
+        </app-stats-card>
+      </ng-container>
+
+      <!-- Loading State -->
+      <ng-template #loadingStats>
+        <app-stats-card
+          title="Loading..."
+          [value]="0"
+          icon="⏳"
+        ></app-stats-card>
+        <app-stats-card
+          title="Loading..."
+          [value]="0"
+          icon="⏳"
+        ></app-stats-card>
+        <app-stats-card
+          title="Loading..."
+          [value]="0"
+          icon="⏳"
+        ></app-stats-card>
+        <app-stats-card
+          title="Loading..."
+          [value]="0"
+          icon="⏳"
+        ></app-stats-card>
+      </ng-template>
+    </section>
+
+    <!-- Profile Completion Section -->
+    <section class="profile-section">
+      <app-profile-completion></app-profile-completion>
+    </section>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+      <!-- Left Column -->
+      <div class="left-column">
+        <app-quick-actions></app-quick-actions>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <app-getting-started></app-getting-started>
+      </div>
+    </div>
+
+    <!-- Bottom Stats Section -->
+    <section class="secondary-stats">
+      <ng-container *ngIf="stats$ | async as stats">
+        <div class="stat-item">
+          <span class="stat-label">Total Bookings</span>
+          <span class="stat-value">{{ stats.totalBookings }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Services Listed</span>
+          <span class="stat-value">{{ stats.servicesListed }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total Earnings</span>
+          <span class="stat-value">₹{{ stats.totalEarnings }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Average Rating</span>
+          <span class="stat-value"
+            >{{
+              stats.averageRating > 0
+                ? (stats.averageRating | number : '1.1-1')
+                : '0.0'
+            }}★</span
+          >
+        </div>
+      </ng-container>
+    </section>
+  </main>
+</div>

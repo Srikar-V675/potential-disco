@@ -1,0 +1,123 @@
+<div class="basic-info-form">
+  <h2>Create Your Partner Account</h2>
+  <p>Let's start with your basic information. All fields are required.</p>
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="userName">Full Name <span class="required">*</span></label>
+      <input
+        id="userName"
+        type="text"
+        formControlName="userName"
+        placeholder="Enter your full name"
+      />
+      <div
+        class="error"
+        *ngIf="form.get('userName')?.invalid && form.get('userName')?.touched"
+      >
+        <span *ngIf="form.get('userName')?.errors?.['required']"
+          >Full Name is required</span
+        >
+        <span *ngIf="form.get('userName')?.errors?.['minlength']"
+          >Full Name must be at least 3 characters</span
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address <span class="required">*</span></label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="your.email@example.com"
+      />
+      <div
+        class="error"
+        *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+      >
+        <span *ngIf="form.get('email')?.errors?.['required']"
+          >Email Address is required</span
+        >
+        <span *ngIf="form.get('email')?.errors?.['email']"
+          >Enter a valid email address</span
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber"
+        >Phone Number <span class="required">*</span></label
+      >
+      <input
+        id="phoneNumber"
+        type="tel"
+        formControlName="phoneNumber"
+        placeholder="+91 XXXXXX XXXXX"
+      />
+      <div
+        class="error"
+        *ngIf="
+          form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched
+        "
+      >
+        <span *ngIf="form.get('phoneNumber')?.errors?.['required']"
+          >Phone Number is required</span
+        >
+        <span *ngIf="form.get('phoneNumber')?.errors?.['pattern']"
+          >Enter a valid phone number</span
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password <span class="required">*</span></label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="At least 8 characters"
+      />
+      <div
+        class="error"
+        *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+      >
+        <span *ngIf="form.get('password')?.errors?.['required']"
+          >Password is required</span
+        >
+        <span *ngIf="form.get('password')?.errors?.['minlength']"
+          >Password must be at least 8 characters</span
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword"
+        >Confirm Password <span class="required">*</span></label
+      >
+      <input
+        id="confirmPassword"
+        type="password"
+        formControlName="confirmPassword"
+        placeholder="Re-enter your password"
+      />
+      <div
+        class="error"
+        *ngIf="
+          form.get('confirmPassword')?.invalid &&
+          form.get('confirmPassword')?.touched
+        "
+      >
+        <span *ngIf="form.get('confirmPassword')?.errors?.['required']"
+          >Confirm Password is required</span
+        >
+      </div>
+      <div
+        class="error"
+        *ngIf="form.errors?.['passwordMismatch'] && form.get('confirmPassword')?.touched"
+      >
+        <span>Passwords must match</span>
+      </div>
+    </div>
+  </form>
+</div>

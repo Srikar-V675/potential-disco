@@ -1,0 +1,80 @@
+/* src/app/features/partner/components/quick-actions/quick-actions.component.css */
+
+.quick-actions-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.card-title {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.actions-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.action-item:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateX(4px);
+}
+
+.action-icon {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.action-content {
+  flex: 1;
+}
+
+.action-content h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.action-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.action-arrow {
+  font-size: 20px;
+  color: #9ca3af;
+  transition: transform 0.2s ease;
+}
+
+.action-item:hover .action-arrow {
+  transform: translateX(4px);
+  color: #3b82f6;
+}

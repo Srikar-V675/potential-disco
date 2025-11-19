@@ -1,0 +1,134 @@
+/* src/app/features/partner/components/profile-completion/profile-completion.component.css */
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.percentage {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.progress-bar-container {
+  margin-bottom: 24px;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  transition: width 0.5s ease;
+}
+
+.completion-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-item.completed .step-icon {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.step-item:not(.completed) .step-icon {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+}
+
+.step-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.step-detail {
+  font-size: 13px;
+  font-weight: 600;
+  color: #10b981;
+}
+
+.step-detail.pending {
+  color: #f59e0b;
+}
+
+.completion-cta {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.completion-cta p {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.btn-primary {
+  padding: 10px 24px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}

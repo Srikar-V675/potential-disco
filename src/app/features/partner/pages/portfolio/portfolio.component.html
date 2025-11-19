@@ -1,0 +1,51 @@
+<div class="portfolio-layout">
+  <app-sidebar [activePage]="'portfolio'"></app-sidebar>
+
+  <main class="portfolio-page">
+    <div class="page-header">
+      <div>
+        <h1>Service Portfolio</h1>
+        <p class="subtitle">Showcase your work with high-quality images</p>
+      </div>
+    </div>
+
+    <div class="tips-card">
+      <div class="tips-header">
+        <span class="material-icons">lightbulb</span>
+        <strong>Tips for Great Portfolio Images</strong>
+      </div>
+      <ul class="tips-list">
+        <li>Use high-resolution images (minimum 1200×800 pixels)</li>
+        <li>Show before and after shots when possible</li>
+        <li>Ensure good lighting and clear focus</li>
+        <li>Include a variety of your work across different projects</li>
+        <li>Add descriptive captions to help customers understand your work</li>
+      </ul>
+    </div>
+
+    <div *ngIf="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading portfolio...</p>
+    </div>
+
+    <div *ngIf="!loading" class="portfolio-content">
+      <h2 class="section-title">
+        Your Portfolio ({{ portfolioItems.length }} photos)
+      </h2>
+
+      <div *ngIf="portfolioItems.length === 0" class="empty-state">
+        <span class="material-icons">photo_library</span>
+        <p>No portfolio images yet</p>
+      </div>
+
+      <div *ngIf="portfolioItems.length > 0" class="portfolio-grid">
+        <div *ngFor="let item of portfolioItems" class="portfolio-item">
+          <img [src]="item.imageUrl" [alt]="item.caption" />
+          <div class="portfolio-caption">
+            <p>{{ item.caption }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

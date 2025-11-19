@@ -1,0 +1,106 @@
+.service-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header .title {
+  display: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2 .row {
+  margin: 0;
+}
+
+input,
+select,
+textarea {
+  padding: 10px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  background: #f9fafb;
+  font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #6366f1;
+  background: #fff;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.hint {
+  color: #6b7280;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.offer-toggle {
+  margin: 8px 0;
+}
+
+.offer {
+  padding: 16px;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.actions app-button {
+  min-width: 120px;
+}
+
+@media (max-width: 640px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions app-button {
+    width: 100%;
+  }
+}

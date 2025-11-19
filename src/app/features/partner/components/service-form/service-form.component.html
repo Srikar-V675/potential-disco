@@ -1,0 +1,173 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="service-form">
+  <div class="header">
+    <h3 class="title">
+      Add Service<span *ngIf="categoryName"> — {{ categoryName }}</span>
+    </h3>
+  </div>
+
+  <div class="row">
+    <label>Service title</label>
+    <input
+      type="text"
+      formControlName="title"
+      placeholder="e.g., Quick Fix Electrical Work"
+    />
+    <div class="error" *ngIf="f['title'].touched && f['title'].errors">
+      <span *ngIf="f['title'].errors['required']">Title is required</span>
+      <span *ngIf="f['title'].errors['minlength']"
+        >Title must be at least 3 characters</span
+      >
+      <span *ngIf="f['title'].errors['maxlength']"
+        >Title must not exceed 100 characters</span
+      >
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Description (single line)</label>
+    <input
+      type="text"
+      formControlName="description"
+      placeholder="Short description"
+    />
+    <div
+      class="error"
+      *ngIf="f['description'].touched && f['description'].errors"
+    >
+      <span *ngIf="f['description'].errors['required']"
+        >Description is required</span
+      >
+      <span *ngIf="f['description'].errors['singleLine']"
+        >Description must be a single line</span
+      >
+    </div>
+  </div>
+
+  <div class="row grid-2">
+    <div>
+      <label>Pricing type</label>
+      <select formControlName="priceType">
+        <option value="hourly">Hourly</option>
+        <option value="daily">Daily</option>
+      </select>
+      <div
+        class="error"
+        *ngIf="f['priceType'].touched && f['priceType'].errors"
+      >
+        <span *ngIf="f['priceType'].errors['required']"
+          >Pricing type is required</span
+        >
+      </div>
+    </div>
+
+    <div>
+      <label>Price</label>
+      <input
+        type="number"
+        formControlName="price"
+        min="1"
+        step="0.01"
+        placeholder="e.g., 500"
+      />
+      <div class="error" *ngIf="f['price'].touched && f['price'].errors">
+        <span *ngIf="f['price'].errors['required']">Price is required</span>
+        <span *ngIf="f['price'].errors['pattern']"
+          >Enter a valid number (up to 2 decimals)</span
+        >
+        <span *ngIf="f['price'].errors['positive']"
+          >Price must be greater than 0</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Duration</label>
+    <input
+      type="number"
+      formControlName="duration"
+      min="1"
+      step="1"
+      placeholder="Minutes or days"
+    />
+    <div class="hint">For hourly, use minutes. For daily, use days.</div>
+    <div class="error" *ngIf="f['duration'].touched && f['duration'].errors">
+      <span *ngIf="f['duration'].errors['required']">Duration is required</span>
+      <span *ngIf="f['duration'].errors['pattern']"
+        >Duration must be a whole number</span
+      >
+      <span *ngIf="f['duration'].errors['positive']"
+        >Duration must be greater than 0</span
+      >
+    </div>
+  </div>
+
+  <div class="row offer-toggle">
+    <app-toggle
+      [label]="'Apply offer'"
+      [checked]="f['hasOffer'].value"
+      (checkedChange)="form.get('hasOffer')!.setValue($event)"
+    ></app-toggle>
+  </div>
+
+  <div class="offer" *ngIf="f['hasOffer'].value">
+    <div class="row">
+      <label>Offer title</label>
+      <input
+        type="text"
+        formControlName="offerTitle"
+        placeholder="e.g., Deepavali Offer"
+      />
+      <div
+        class="error"
+        *ngIf="f['offerTitle'].touched && f['offerTitle'].errors"
+      >
+        <span *ngIf="f['offerTitle'].errors['required']"
+          >Offer title is required</span
+        >
+        <span *ngIf="f['offerTitle'].errors['minlength']"
+          >Offer title must be at least 3 characters</span
+        >
+        <span *ngIf="f['offerTitle'].errors['maxlength']"
+          >Offer title must not exceed 100 characters</span
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <label>Discount (%)</label>
+      <input
+        type="number"
+        formControlName="offerDiscount"
+        min="0"
+        max="100"
+        step="1"
+        placeholder="0 - 100"
+      />
+      <div
+        class="error"
+        *ngIf="f['offerDiscount'].touched && f['offerDiscount'].errors"
+      >
+        <span *ngIf="f['offerDiscount'].errors['required']"
+          >Discount is required</span
+        >
+        <span *ngIf="f['offerDiscount'].errors['pattern']"
+          >Enter a whole number</span
+        >
+        <span *ngIf="f['offerDiscount'].errors['discountRange']"
+          >Discount must be between 0 and 100</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <app-button [text]="submitText" type="submit"></app-button>
+    <app-button
+      text="Cancel"
+      type="button"
+      variant="white"
+      (btnClick)="onCancel()"
+    ></app-button>
+  </div>
+</form>

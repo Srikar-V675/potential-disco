@@ -1,0 +1,55 @@
+.dialog-container {
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dialog-subtitle {
+  margin: 0 0 24px 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.dialog-header .close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog-header .close-btn mat-icon {
+  color: #6b7280;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.dialog-header .close-btn:hover {
+  background: #f3f4f6;
+}
+
+.dialog-content {
+  flex: 1;
+  overflow-y: auto;
+}

@@ -1,0 +1,18 @@
+<!-- src/app/shared/components/stats-card/stats-card.component.html -->
+
+<div class="stats-card" [class.loading]="loading">
+  <div class="stats-header">
+    <span class="stats-icon">{{ icon }}</span>
+    <span *ngIf="trend" class="stats-trend" [class]="'trend-' + trend">
+      <span class="trend-icon">{{
+        trend === 'up' ? '↑' : trend === 'down' ? '↓' : '→'
+      }}</span>
+      <span *ngIf="trendValue">{{ trendValue }}</span>
+    </span>
+  </div>
+
+  <div class="stats-content">
+    <h3 class="stats-value">{{ loading ? '...' : value }}</h3>
+    <p class="stats-title">{{ title }}</p>
+  </div>
+</div>

@@ -1,0 +1,652 @@
+{
+  "users": [
+    {
+      "id": "001",
+      "userName": "John Doe",
+      "phoneNumber": 1234567890,
+      "role": "partner",
+      "email": "jhn.doe@gmail.com",
+      "password": "password123",
+      "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
+      "addresses": [
+        {
+          "tag": "",
+          "street": "#202, 1st Main",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "pincode": 560088
+        }
+      ],
+      "bankAccount": {
+        "accountHolder": "John Doe",
+        "accountNumber": "1234567",
+        "ifsc": "SBI00111",
+        "bankName": "State Bank Of India"
+      },
+      "serviceAreas": [
+        "560088",
+        "560077",
+        "560044"
+      ]
+    },
+    {
+      "id": "002",
+      "userName": "Dan",
+      "phoneNumber": 1234567888,
+      "role": "user",
+      "email": "dan@gmail.com",
+      "bio": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
+      "addresses": [
+        {
+          "tag": "Home",
+          "street": "#202, 1st Main",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "pincode": 560088
+        },
+        {
+          "tag": "Office",
+          "street": "#201, 2nd Main",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "pincode": 560099
+        }
+      ]
+    },
+    {
+      "id": "de636c2b-f3ef-4688-9c1e-70ce2d10b6cf",
+      "userName": "abc",
+      "phoneNumber": 1234567890,
+      "role": "partner",
+      "email": "em@ex.com",
+      "bio": "",
+      "addresses": [],
+      "password": "password123@P"
+    },
+    {
+      "id": "a22ead15-2070-45aa-96d8-2200be548356",
+      "userName": "meh",
+      "phoneNumber": 1234567890,
+      "role": "partner",
+      "email": "em1@ex.com",
+      "bio": "",
+      "addresses": [],
+      "password": "Password@123"
+    },
+    {
+      "id": "bb84d893-c80a-4eaa-9741-2ad8cfdff694",
+      "userName": "Me Arey",
+      "phoneNumber": 1234267897,
+      "role": "partner",
+      "email": "em2@ex.com",
+      "bio": "",
+      "addresses": [],
+      "password": "Password@123"
+    },
+    {
+      "id": "66181d23-e801-4037-8b23-b56e3c5442b4",
+      "userName": "srikar",
+      "phoneNumber": 1234567890,
+      "role": "partner",
+      "email": "sri@ex.com",
+      "bio": "",
+      "addresses": [],
+      "password": "Password@123"
+    },
+    {
+      "id": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "userName": "Srikar V",
+      "phoneNumber": 1234567890,
+      "role": "partner",
+      "email": "srikar@ex.com",
+      "bio": "",
+      "addresses": [],
+      "bankAccount": {
+        "accountHolder": "Srikar V",
+        "accountNumber": "1234567890",
+        "ifsc": "HDFC0001234",
+        "bankName": "HDFC Bank"
+      },
+      "password": "Password@123"
+    }
+  ],
+  "categories": [
+    {
+      "id": "001",
+      "name": "Electrical",
+      "icon": "electrical_services"
+    },
+    {
+      "id": "002",
+      "name": "Plumbing",
+      "icon": "plumbing"
+    },
+    {
+      "id": "003",
+      "name": "Carpentry",
+      "icon": "handyman"
+    }
+  ],
+  "services": [
+    {
+      "id": "001",
+      "partnerId": "001",
+      "title": "Electrical work during construction",
+      "categoryId": "001",
+      "priceType": "daily",
+      "price": 5000,
+      "duration": 10,
+      "hasOffer": true,
+      "offerTitle": "Deepavali Offer",
+      "offerDiscount": 20,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "002",
+          "rating": 2,
+          "comment": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "partnerId": "001",
+      "title": "Quick Fix Electrical Work",
+      "categoryId": "001",
+      "priceType": "hourly",
+      "price": 500,
+      "duration": 60,
+      "hasOffer": true,
+      "offerTitle": "Deepavali Offer",
+      "offerDiscount": 20,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "003",
+      "partnerId": "001",
+      "title": "Plumbing Leak Repair",
+      "categoryId": "002",
+      "priceType": "hourly",
+      "price": 700,
+      "duration": 75,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "004",
+      "partnerId": "001",
+      "title": "Custom Bookshelf Installation",
+      "categoryId": "003",
+      "priceType": "fixed",
+      "price": 4000,
+      "duration": 180,
+      "hasOffer": true,
+      "offerTitle": "Monsoon Discount",
+      "offerDiscount": 10,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "005",
+      "partnerId": "001",
+      "title": "Ceiling Fan Installation",
+      "categoryId": "001",
+      "priceType": "per item",
+      "price": 350,
+      "duration": 30,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "1caa",
+      "partnerId": "de636c2b-f3ef-4688-9c1e-70ce2d10b6cf",
+      "title": "abc",
+      "categoryId": "001",
+      "priceType": "hourly",
+      "price": 500,
+      "duration": 40,
+      "hasOffer": true,
+      "offerTitle": "diw",
+      "offerDiscount": 20,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "e2fe",
+      "partnerId": "de636c2b-f3ef-4688-9c1e-70ce2d10b6cf",
+      "title": "123",
+      "categoryId": "002",
+      "priceType": "daily",
+      "price": 1000,
+      "duration": 2,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "227d",
+      "partnerId": "a22ead15-2070-45aa-96d8-2200be548356",
+      "title": "abc",
+      "categoryId": "001",
+      "priceType": "hourly",
+      "price": 500,
+      "duration": 40,
+      "hasOffer": true,
+      "offerTitle": "diwali",
+      "offerDiscount": 50,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "6f37",
+      "partnerId": "bb84d893-c80a-4eaa-9741-2ad8cfdff694",
+      "title": "abc",
+      "categoryId": "001",
+      "priceType": "hourly",
+      "price": 300,
+      "duration": 40,
+      "hasOffer": true,
+      "offerTitle": "diw",
+      "offerDiscount": 10,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "9423",
+      "partnerId": "bb84d893-c80a-4eaa-9741-2ad8cfdff694",
+      "title": "cde",
+      "categoryId": "002",
+      "priceType": "daily",
+      "price": 400,
+      "duration": 1,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "b3ca7c62-34b5-4ebe-9210-e19cdf4aec6d",
+      "partnerId": "66181d23-e801-4037-8b23-b56e3c5442b4",
+      "title": "new service",
+      "categoryId": "001",
+      "priceType": "hourly",
+      "price": 500,
+      "duration": 40,
+      "hasOffer": true,
+      "offerTitle": "diwali",
+      "offerDiscount": 29,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "ed99475f-5c9a-41b1-8112-c1f500ac1ffd",
+      "partnerId": "66181d23-e801-4037-8b23-b56e3c5442b4",
+      "title": "abc",
+      "categoryId": "002",
+      "priceType": "daily",
+      "price": 1000,
+      "duration": 1,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "b511df54-3d7f-4058-aaff-ff60d6b50d00",
+      "partnerId": "001",
+      "title": "Plumbing",
+      "categoryId": "default-category",
+      "priceType": "daily",
+      "price": 2000,
+      "duration": 5,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "48b51856-3fa9-4abf-a881-817fe633f4b7",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "title": "Quick carpent",
+      "categoryId": "003",
+      "priceType": "daily",
+      "price": 3000,
+      "duration": 3,
+      "hasOffer": true,
+      "offerTitle": "diwali offer",
+      "offerDiscount": 10,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "4736b759-6c47-4925-958d-24243e097425",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "title": "Fix pipe",
+      "categoryId": "002",
+      "priceType": "hourly",
+      "price": 500,
+      "duration": 60,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    },
+    {
+      "id": "d820f52e-1a0b-4c7b-b0e2-bba903468d26",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "title": "New",
+      "description": "blah",
+      "categoryId": "default-category",
+      "priceType": "hourly",
+      "price": 300,
+      "duration": 40,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": []
+    }
+  ],
+  "bookings": [
+    {
+      "id": "001",
+      "userId": "001",
+      "serviceId": "002",
+      "price": 500,
+      "offerDiscount": 20,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1763454286664,
+      "address": "#202, 1st Main, Bangalore, Karnataka, 560088",
+      "completedAt": 1763551688674
+    },
+    {
+      "id": "b001",
+      "userId": "002",
+      "serviceId": "48b51856-3fa9-4abf-a881-817fe633f4b7",
+      "price": 3000,
+      "offerDiscount": 10,
+      "convenienceFee": 50,
+      "status": "confirmed",
+      "schedule": 1737532800000,
+      "address": "123, Park Street, Juhu-West, Mumbai - 400058",
+      "createdAt": 1737446400000
+    },
+    {
+      "id": "b002",
+      "userId": "002",
+      "serviceId": "4736b759-6c47-4925-958d-24243e097425",
+      "price": 500,
+      "offerDiscount": 0,
+      "convenienceFee": 50,
+      "status": "confirmed",
+      "schedule": 1737619200000,
+      "address": "456, Main Road, Bandra, Mumbai - 400050",
+      "createdAt": 1737446400000
+    },
+    {
+      "id": "b003",
+      "userId": "002",
+      "serviceId": "48b51856-3fa9-4abf-a881-817fe633f4b7",
+      "price": 3000,
+      "offerDiscount": 10,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1737878400000,
+      "address": "789, Hill View, Powai, Mumbai - 400076",
+      "createdAt": 1737446400000,
+      "completedAt": 1763579521007
+    },
+    {
+      "id": "b004",
+      "userId": "002",
+      "serviceId": "4736b759-6c47-4925-958d-24243e097425",
+      "price": 500,
+      "offerDiscount": 0,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1736928000000,
+      "address": "321, Lake Side, Goregaon, Mumbai - 400063",
+      "createdAt": 1736841600000,
+      "completedAt": 1737014400000
+    },
+    {
+      "id": "b005",
+      "userId": "002",
+      "serviceId": "d820f52e-1a0b-4c7b-b0e2-bba903468d26",
+      "price": 300,
+      "offerDiscount": 0,
+      "convenienceFee": 50,
+      "status": "cancelled",
+      "schedule": 1736668800000,
+      "address": "654, Garden View, Khadi, Mumbai - 400064",
+      "createdAt": 1736582400000,
+      "cancelledAt": 1736755200000
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "001",
+      "partnerId": "001",
+      "imageUrl": "/path/to/image",
+      "caption": "Lorem Ipsum"
+    },
+    {
+      "id": "p001",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "imageUrl": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop",
+      "caption": "Bathroom deep cleaning - Before and After"
+    },
+    {
+      "id": "p002",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "imageUrl": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600&h=400&fit=crop",
+      "caption": "Kitchen renovation completed"
+    },
+    {
+      "id": "p003",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "imageUrl": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&h=400&fit=crop",
+      "caption": "Living room interior painting"
+    }
+  ],
+  "earnings": [
+    {
+      "id": "earn-001",
+      "partnerId": "partner-1",
+      "earnings": 45000,
+      "balance": 12450
+    },
+    {
+      "id": "earn-002",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "earnings": 47930,
+      "balance": 13150
+    }
+  ],
+  "transactions": [
+    {
+      "id": "txn-001",
+      "partnerId": "partner-1",
+      "bookingId": "booking-001",
+      "title": "Bathroom Deep Cleaning",
+      "from": "Dan",
+      "dateTime": 1731974400000,
+      "amount": 2500,
+      "type": "earning"
+    },
+    {
+      "id": "txn-002",
+      "partnerId": "partner-1",
+      "bookingId": "booking-002",
+      "title": "Kitchen Cleaning",
+      "from": "Sarah Johnson",
+      "dateTime": 1732060800000,
+      "amount": 3200,
+      "type": "earning"
+    },
+    {
+      "id": "txn-003",
+      "partnerId": "partner-1",
+      "title": "Payout to Bank",
+      "from": "Wallet",
+      "dateTime": 1732147200000,
+      "amount": 5000,
+      "type": "payout",
+      "toBankAccount": {
+        "accountHolder": "John Doe",
+        "accountNumber": "1234567890",
+        "ifsc": "SBI00111",
+        "bankName": "State Bank Of India"
+      }
+    },
+    {
+      "id": "txn-004",
+      "partnerId": "partner-1",
+      "bookingId": "booking-003",
+      "title": "Full Home Deep Cleaning",
+      "from": "Mike Wilson",
+      "dateTime": 1732233600000,
+      "amount": 8500,
+      "type": "earning"
+    },
+    {
+      "id": "txn-005",
+      "partnerId": "partner-1",
+      "bookingId": "booking-004",
+      "title": "Sofa Cleaning",
+      "from": "Emily Davis",
+      "dateTime": 1732320000000,
+      "amount": 1800,
+      "type": "earning"
+    },
+    {
+      "id": "txn-006",
+      "partnerId": "partner-1",
+      "title": "Payout to Bank",
+      "from": "Wallet",
+      "dateTime": 1732406400000,
+      "amount": 10000,
+      "type": "payout",
+      "toBankAccount": {
+        "accountHolder": "John Doe",
+        "accountNumber": "1234567890",
+        "ifsc": "SBI00111",
+        "bankName": "State Bank Of India"
+      }
+    },
+    {
+      "id": "txn-007",
+      "partnerId": "partner-1",
+      "bookingId": "booking-005",
+      "title": "Carpet Cleaning",
+      "from": "Robert Brown",
+      "dateTime": 1732492800000,
+      "amount": 2200,
+      "type": "earning"
+    },
+    {
+      "id": "txn-008",
+      "partnerId": "partner-1",
+      "bookingId": "booking-006",
+      "title": "Window Cleaning",
+      "from": "Lisa Anderson",
+      "dateTime": 1732579200000,
+      "amount": 1500,
+      "type": "earning"
+    },
+    {
+      "id": "txn-101",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "bookingId": "booking-101",
+      "title": "Bathroom Deep Cleaning",
+      "from": "Priya Sharma",
+      "dateTime": 1731974400000,
+      "amount": 899,
+      "type": "earning"
+    },
+    {
+      "id": "txn-102",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "bookingId": "booking-102",
+      "title": "Kitchen Cleaning",
+      "from": "Rahul Mishra",
+      "dateTime": 1732060800000,
+      "amount": 1299,
+      "type": "earning"
+    },
+    {
+      "id": "txn-103",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "title": "Payout to Bank",
+      "from": "Wallet",
+      "dateTime": 1732147200000,
+      "amount": 8500,
+      "type": "payout",
+      "toBankAccount": {
+        "accountHolder": "John Doe",
+        "accountNumber": "1234567890",
+        "ifsc": "HDFC0001234",
+        "bankName": "HDFC Bank"
+      }
+    },
+    {
+      "id": "txn-104",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "bookingId": "booking-103",
+      "title": "Full House Cleaning",
+      "from": "Anjali Patel",
+      "dateTime": 1732233600000,
+      "amount": 2499,
+      "type": "earning"
+    },
+    {
+      "id": "txn-105",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "bookingId": "booking-104",
+      "title": "Bathroom Deep Cleaning",
+      "from": "Vikram Singh",
+      "dateTime": 1732320000000,
+      "amount": 899,
+      "type": "earning"
+    },
+    {
+      "id": "27f09ba8-fb78-47c0-8b00-fae72eaa993c",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "title": "Payout to Bank",
+      "from": "Wallet",
+      "dateTime": 1763579115846,
+      "amount": 2000,
+      "type": "payout",
+      "toBankAccount": {
+        "accountHolder": "Srikar V",
+        "accountNumber": "1234567890",
+        "ifsc": "HDFC0001234",
+        "bankName": "HDFC Bank"
+      }
+    },
+    {
+      "id": "c2e857c6-09c3-4583-823c-3719f9d376de",
+      "partnerId": "def5bf94-f502-4a08-b16d-73cf5b438d64",
+      "bookingId": "b003",
+      "title": "Quick carpent",
+      "from": "Dan",
+      "dateTime": 1763579521047,
+      "amount": 2700,
+      "type": "earning"
+    }
+  ]
+}

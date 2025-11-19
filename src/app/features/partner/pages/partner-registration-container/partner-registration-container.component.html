@@ -1,0 +1,111 @@
+<!-- partner-registration-container.component.html -->
+
+<div class="registration-container">
+  <div
+    class="back-button"
+    (click)="onPrevious()"
+    *ngIf="store.snapshot.currentStep > 1"
+  >
+    <mat-icon>arrow_back</mat-icon>
+    <span>Back</span>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-text">
+      <span class="step-info"
+        >Step {{ store.snapshot.currentStep }} of {{ totalSteps }}</span
+      >
+      <span class="completion-percent"
+        >{{ getCompletionPercentage() }}% Complete</span
+      >
+    </div>
+    <div class="progress-bar">
+      <div
+        class="progress-fill"
+        [style.width.%]="getCompletionPercentage()"
+      ></div>
+    </div>
+  </div>
+
+  <div class="stepper">
+    <div
+      class="step"
+      [class.active]="store.snapshot.currentStep === 1"
+      [class.completed]="store.snapshot.currentStep > 1"
+    >
+      <div class="step-number">
+        <mat-icon *ngIf="store.snapshot.currentStep > 1">check</mat-icon>
+        <span *ngIf="store.snapshot.currentStep <= 1">1</span>
+      </div>
+      <div class="step-label">Basic Info</div>
+    </div>
+
+    <div
+      class="step-line"
+      [class.completed]="store.snapshot.currentStep > 1"
+    ></div>
+
+    <div
+      class="step"
+      [class.active]="store.snapshot.currentStep === 2"
+      [class.completed]="store.snapshot.currentStep > 2"
+    >
+      <div class="step-number">
+        <mat-icon *ngIf="store.snapshot.currentStep > 2">check</mat-icon>
+        <span *ngIf="store.snapshot.currentStep <= 2">2</span>
+      </div>
+      <div class="step-label">Categories</div>
+    </div>
+
+    <div
+      class="step-line"
+      [class.completed]="store.snapshot.currentStep > 2"
+    ></div>
+
+    <div class="step" [class.active]="store.snapshot.currentStep === 3">
+      <div class="step-number">3</div>
+      <div class="step-label">Services</div>
+    </div>
+  </div>
+
+  <div class="step-content">
+    <app-partner-basic-info-step
+      *ngIf="store.snapshot.currentStep === 1"
+    ></app-partner-basic-info-step>
+    <app-partner-category-step
+      *ngIf="store.snapshot.currentStep === 2"
+    ></app-partner-category-step>
+    <app-partner-services-step
+      *ngIf="store.snapshot.currentStep === 3"
+    ></app-partner-services-step>
+  </div>
+
+  <div class="navigation-buttons">
+    <button
+      *ngIf="store.snapshot.currentStep > 1"
+      class="btn-secondary"
+      (click)="onPrevious()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      Previous
+    </button>
+
+    <button
+      *ngIf="store.snapshot.currentStep < totalSteps"
+      class="btn-primary"
+      (click)="onNext()"
+    >
+      Next Step
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+
+    <button
+      *ngIf="store.snapshot.currentStep === totalSteps"
+      class="btn-primary"
+      (click)="onSubmit()"
+      [disabled]="isSubmitting"
+    >
+      {{ isSubmitting ? 'Submitting...' : 'Submit Registration' }}
+    </button>
+  </div>
+</div>

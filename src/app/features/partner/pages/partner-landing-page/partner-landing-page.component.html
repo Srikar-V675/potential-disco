@@ -1,0 +1,182 @@
+<div class="hero-section">
+  <div class="hero-content">
+    <h1>Grow Your Business<br />with UrbanFix</h1>
+    <p>
+      Join thousands of service professionals earning more by<br />
+      connecting with customers in your area. Set your own<br />
+      schedule, prices, and build a thriving business.
+    </p>
+    <div class="hero-buttons">
+      <app-button
+        variant="black"
+        routerLink="/partner/register"
+        text="Become a Partner"
+      ></app-button>
+      <app-button variant="white" text="Learn More"></app-button>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="carousel-container">
+      <img
+        [src]="partnerImages[currentImageIndex]"
+        alt="Partner"
+        class="carousel-image"
+      />
+      <div class="floating-stats">
+        <div class="stat-card stat-1">
+          <div class="stat-value">50K+</div>
+          <div class="stat-label">Active Partners</div>
+        </div>
+        <div class="stat-card stat-2">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Verified Professionals</div>
+        </div>
+        <div class="stat-card stat-3">
+          <div class="stat-value">40%</div>
+          <div class="stat-label">Avg. Income Increase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="statistics-section">
+  <div class="statistic">
+    <span class="material-icons">group</span>
+    <div>
+      <span class="label">Active Partners</span>
+      <span class="value">50K+</span>
+    </div>
+  </div>
+  <div class="statistic">
+    <span class="material-icons">star</span>
+    <div>
+      <span class="label">Average Rating</span>
+      <span class="value">4.8</span>
+    </div>
+  </div>
+  <div class="statistic">
+    <span class="material-icons">people</span>
+    <div>
+      <span class="label">Customers Served</span>
+      <span class="value">12M+</span>
+    </div>
+  </div>
+  <div class="statistic">
+    <span class="material-icons">attach_money</span>
+    <div>
+      <span class="label">Avg Monthly Earnings</span>
+      <span class="value">₹25K+</span>
+    </div>
+  </div>
+</div>
+
+<div class="how-it-works-section">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-number">1</span>
+      <p>Register & Get Verified</p>
+      <p>
+        Complete your profile with your skills, experience, and service areas.
+        We'll verify your credentials.
+      </p>
+    </div>
+    <div class="step">
+      <span class="step-number">2</span>
+      <p>Receive Booking Requests</p>
+      <p>
+        Get notified when customers in your area request services you offer.
+        Accept jobs that fit your schedule.
+      </p>
+    </div>
+    <div class="step">
+      <span class="step-number">3</span>
+      <p>Complete Jobs & Get Paid</p>
+      <p>
+        Provide excellent service, receive payment directly to your account, and
+        build your reputation.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="why-partner-section">
+  <h2>Why Partner With Us?</h2>
+  <div class="benefits">
+    <div class="benefit">
+      <span class="material-icons">attach_money</span>
+      <p>Flexible Earnings</p>
+      <p>
+        Set your own rates and service fees. Receive weekly payouts directly to
+        your bank account.
+      </p>
+    </div>
+    <div class="benefit">
+      <span class="material-icons">people</span>
+      <p>Ready Customer Base</p>
+      <p>
+        Access millions of customers actively looking for services in your
+        category.
+      </p>
+    </div>
+    <div class="benefit">
+      <span class="material-icons">security</span>
+      <p>Insurance Coverage</p>
+      <p>
+        All bookings are covered by our partner protection policy for your peace
+        of mind.
+      </p>
+    </div>
+    <div class="benefit">
+      <span class="material-icons">schedule</span>
+      <p>Manage Your Schedule</p>
+      <p>
+        Block out times when you're unavailable and only accept jobs that work
+        for you.
+      </p>
+    </div>
+    <div class="benefit">
+      <span class="material-icons">trending_up</span>
+      <p>Grow Your Business</p>
+      <p>
+        Build your reputation with customer reviews and ratings to attract more
+        bookings.
+      </p>
+    </div>
+    <div class="benefit">
+      <span class="material-icons">campaign</span>
+      <p>Marketing Support</p>
+      <p>
+        We bring customers to you through our marketing efforts and platform
+        visibility.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="testimonials-section">
+  <h2>What Our Partners Say</h2>
+  <div class="testimonials">
+    <div class="testimonial" *ngFor="let testimonial of userTestimonials">
+      <span class="rating">{{ testimonial.rating }} ★</span>
+      <p>"{{ testimonial.text }}"</p>
+      <span>- {{ testimonial.author }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Ready to Start Earning?</h2>
+  <p>
+    Join thousands of professionals growing their business with UrbanFix.
+    Registration takes less than 5 minutes.
+  </p>
+  <app-button
+    variant="white"
+    routerLink="/partner/register"
+    text="Register as a Partner"
+  ></app-button>
+</div>
+
+<app-footer></app-footer>

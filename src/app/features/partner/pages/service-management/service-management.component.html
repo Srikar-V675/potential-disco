@@ -1,0 +1,44 @@
+<!-- src/app/features/partner/pages/service-management/service-management.component.html -->
+
+<div class="page-layout">
+  <app-sidebar [activePage]="'services'"></app-sidebar>
+
+  <main class="page-content">
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="header-content">
+        <h1>Manage Services</h1>
+        <p class="subtitle">Add, edit, or remove the services you offer</p>
+      </div>
+      <button class="add-service-btn" (click)="openAddServiceDialog()">
+        <mat-icon>add</mat-icon>
+        <span>Add New Service</span>
+      </button>
+    </header>
+
+    <!-- Services List -->
+    <section class="services-section">
+      <!-- Loading State -->
+      <div class="loading-state" *ngIf="isLoading">
+        <p>Loading your services...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="!isLoading && services.length === 0">
+        <p>No services yet. Start by adding your first service offering.</p>
+      </div>
+
+      <!-- Services List -->
+      <div class="services-list" *ngIf="!isLoading && services.length > 0">
+        <app-service-card
+          *ngFor="let service of services"
+          [service]="service"
+          (toggleActive)="handleToggleActive($event)"
+          (edit)="openEditServiceDialog($event)"
+          (delete)="handleServiceDelete($event)"
+        >
+        </app-service-card>
+      </div>
+    </section>
+  </main>
+</div>

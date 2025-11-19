@@ -1,0 +1,20 @@
+<!-- src/app/features/partner/components/quick-actions/quick-actions.component.html -->
+
+<div class="quick-actions-card">
+  <h3 class="card-title">Quick Actions</h3>
+
+  <div class="actions-grid">
+    <a
+      *ngFor="let action of actions"
+      [routerLink]="action.route"
+      class="action-item"
+    >
+      <div class="action-icon">{{ action.icon }}</div>
+      <div class="action-content">
+        <h4>{{ action.title }}</h4>
+        <p>{{ action.description }}</p>
+      </div>
+      <div class="action-arrow">→</div>
+    </a>
+  </div>
+</div>

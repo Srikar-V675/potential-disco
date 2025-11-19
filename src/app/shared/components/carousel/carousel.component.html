@@ -1,0 +1,39 @@
+<div class="carousel">
+  <div class="carousel-images">
+    <img [src]="images[currentIndex]" alt="Carousel Image" />
+    <div class="overlay" *ngIf="overlayType === 'statistics'">
+      <div *ngFor="let stat of statistics" class="statistic">
+        <span class="material-icons">{{ stat.icon }}</span>
+        <div>
+          <span class="label">{{ stat.label }}</span>
+          <span class="value">{{ stat.value }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" *ngIf="overlayType === 'testimonials'">
+      <div *ngFor="let testimonial of testimonials" class="testimonial">
+        <p>{{ testimonial.text }}</p>
+        <span>- {{ testimonial.author }}</span>
+        <span class="rating">Rating: {{ testimonial.rating }}</span>
+      </div>
+    </div>
+    <div class="search-bar" *ngIf="showSearchBar">
+      <input type="text" placeholder="Search services..." />
+    </div>
+    <div class="buttons" *ngIf="buttons">
+      <a
+        *ngFor="let button of buttons"
+        [routerLink]="button.routerLink"
+        class="button"
+        >{{ button.text }}</a
+      >
+    </div>
+  </div>
+  <div class="navigation-dots">
+    <span
+      *ngFor="let image of images; let i = index"
+      [class.active]="i === currentIndex"
+      (click)="navigateTo(i)"
+    ></span>
+  </div>
+</div>
