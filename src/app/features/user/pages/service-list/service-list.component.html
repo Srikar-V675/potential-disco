@@ -1,0 +1,211 @@
+<div class="service-list-page">
+  <!-- Header -->
+  <div class="page-header">
+    <button class="back-btn" (click)="goBack()">
+      <span class="material-icons">arrow_back</span>
+      Back to Home
+    </button>
+  </div>
+
+  <!-- Search and Filter Bar -->
+  <div class="search-filter-bar">
+    <div class="search-container">
+      <span class="material-icons search-icon">search</span>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search for services..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearchInput()"
+      />
+    </div>
+    <button class="filter-btn" (click)="toggleFilters()">
+      <span class="material-icons">tune</span>
+      Filters
+    </button>
+  </div>
+
+  <!-- Filter Panel -->
+  <div class="filter-panel" *ngIf="showFilters">
+    <div class="filter-header">
+      <h3>Filters</h3>
+      <button class="close-btn" (click)="closeFilters()">Close</button>
+    </div>
+
+    <div class="filter-content">
+      <!-- Price Range -->
+      <div class="filter-section">
+        <h4>Price Range</h4>
+        <div class="price-range">
+          <input
+            type="range"
+            min="0"
+            max="5000"
+            [(ngModel)]="priceRange.min"
+            (change)="onPriceRangeChange()"
+            class="range-slider"
+          />
+          <input
+            type="range"
+            min="0"
+            max="5000"
+            [(ngModel)]="priceRange.max"
+            (change)="onPriceRangeChange()"
+            class="range-slider"
+          />
+          <div class="price-labels">
+            <span>₹{{ priceRange.min }}</span>
+            <span>₹{{ priceRange.max }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minimum Rating -->
+      <div class="filter-section">
+        <h4>Minimum Rating</h4>
+        <div class="rating-options">
+          <label class="rating-option">
+            <input
+              type="radio"
+              name="rating"
+              [checked]="selectedMinRating === 4.5"
+              (change)="setMinRating(4.5)"
+            />
+            <span class="star">⭐</span> 4.5 & up
+          </label>
+          <label class="rating-option">
+            <input
+              type="radio"
+              name="rating"
+              [checked]="selectedMinRating === 4"
+              (change)="setMinRating(4)"
+            />
+            <span class="star">⭐</span> 4 & up
+          </label>
+          <label class="rating-option">
+            <input
+              type="radio"
+              name="rating"
+              [checked]="selectedMinRating === 3.5"
+              (change)="setMinRating(3.5)"
+            />
+            <span class="star">⭐</span> 3.5 & up
+          </label>
+          <label class="rating-option">
+            <input
+              type="radio"
+              name="rating"
+              [checked]="selectedMinRating === 3"
+              (change)="setMinRating(3)"
+            />
+            <span class="star">⭐</span> 3 & up
+          </label>
+        </div>
+      </div>
+
+      <!-- Category -->
+      <div class="filter-section">
+        <h4>Category</h4>
+        <div class="category-options">
+          <label
+            class="category-option"
+            *ngFor="let category of categories"
+            [class.selected]="isCategorySelected(category.id)"
+          >
+            <input
+              type="checkbox"
+              [checked]="isCategorySelected(category.id)"
+              (change)="toggleCategory(category.id)"
+            />
+            <span class="material-icons category-icon">{{
+              category.icon
+            }}</span>
+            {{ category.name }}
+          </label>
+        </div>
+      </div>
+
+      <button class="clear-filters-btn" (click)="clearFilters()">
+        Clear All Filters
+      </button>
+    </div>
+  </div>
+
+  <!-- Services List -->
+  <div class="services-section">
+    <div class="services-header">
+      <div class="services-count">
+        <h2>Available Services</h2>
+        <p>{{ filteredServices.length }} services found</p>
+      </div>
+      <div class="sort-container">
+        <label>Sort by:</label>
+        <select
+          [(ngModel)]="sortBy"
+          (change)="onSortChange()"
+          class="sort-select"
+        >
+          <option value="relevance">Relevance</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading" *ngIf="loading">
+      <p>Loading services...</p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-grid" *ngIf="!loading">
+      <div
+        class="service-card"
+        *ngFor="let service of filteredServices; let i = index"
+        (click)="viewService(service.id)"
+      >
+        <div class="service-image">
+          <img [src]="getServiceImage(i)" [alt]="service.title" />
+          <span class="category-badge">{{
+            getCategoryName(service.categoryId)
+          }}</span>
+          <span class="discount-badge" *ngIf="hasDiscount(service)">
+            {{ service.offerDiscount }}% OFF
+          </span>
+        </div>
+        <div class="service-info">
+          <h3 class="service-title">{{ service.title }}</h3>
+          <div class="service-rating" *ngIf="service.ratings.length > 0">
+            <span class="star">⭐</span>
+            <span class="rating-value">{{
+              getServiceRating(service).toFixed(1)
+            }}</span>
+            <span class="rating-count">({{ service.ratings.length }})</span>
+          </div>
+          <div class="service-duration">
+            <span class="material-icons">schedule</span>
+            {{ getDurationText(service) }}
+          </div>
+          <div class="service-pricing">
+            <span class="original-price" *ngIf="hasDiscount(service)">
+              ₹{{ getOriginalPrice(service) }}
+            </span>
+            <span class="final-price">₹{{ getServicePrice(service) }}</span>
+          </div>
+        </div>
+        <button class="view-btn">
+          <span class="material-icons">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!loading && filteredServices.length === 0">
+      <span class="material-icons empty-icon">search_off</span>
+      <h3>No services found</h3>
+      <p>Try adjusting your filters or search query</p>
+      <button class="clear-btn" (click)="clearFilters()">Clear Filters</button>
+    </div>
+  </div>
+</div>
