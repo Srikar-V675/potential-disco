@@ -1,0 +1,96 @@
+<div class="login-page">
+  <button class="back-btn" (click)="goBack()">
+    <span class="material-icons">arrow_back</span>
+    Back
+  </button>
+
+  <div class="login-card">
+    <div class="logo">
+      <span class="logo-icon">UF</span>
+    </div>
+
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Login to continue to UrbanFix</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <label>Email Address</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          [class.error]="
+            form.get('email')?.invalid && form.get('email')?.touched
+          "
+        />
+        <span
+          class="error-message"
+          *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+        >
+          Please enter a valid email address
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label>Password</label>
+        <div class="password-input">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Enter your password"
+            [class.error]="
+              form.get('password')?.invalid && form.get('password')?.touched
+            "
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="showPassword = !showPassword"
+          >
+            <span class="material-icons">
+              {{ showPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </button>
+        </div>
+        <span
+          class="error-message"
+          *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+        >
+          Password is required
+        </span>
+      </div>
+
+      <div class="form-options">
+        <label class="remember-me">
+          <input type="checkbox" formControlName="rememberMe" />
+          Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="submit-btn" [disabled]="!form.valid">
+        Login
+      </button>
+    </form>
+
+    <div class="divider">
+      <span>Or continue with</span>
+    </div>
+
+    <div class="social-buttons">
+      <button class="social-btn">
+        <span class="google-icon">G</span>
+        Google
+      </button>
+      <button class="social-btn">
+        <span class="material-icons">facebook</span>
+        Facebook
+      </button>
+    </div>
+
+    <p class="signup-link">
+      Don't have an account?
+      <a routerLink="/user/signup" class="link">Sign Up</a>
+    </p>
+  </div>
+</div>

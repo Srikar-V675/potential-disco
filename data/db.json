@@ -108,6 +108,15 @@
         "bankName": "HDFC Bank"
       },
       "password": "Password@123"
+    },
+    {
+      "id": "92e4cac7-48ca-42ba-a870-27d67050d159",
+      "userName": "Srikar V",
+      "phoneNumber": 1234567890,
+      "role": "user",
+      "email": "sriv@ex.com",
+      "addresses": [],
+      "password": "Password@123"
     }
   ],
   "categories": [

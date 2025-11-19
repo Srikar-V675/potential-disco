@@ -3,12 +3,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { HttpClient } from '@angular/common/http';
 import { Observable, map, catchError, of, combineLatest } from 'rxjs';
 import * as AuthSelectors from '../../../../store/auth/auth.selectors';
 import * as ServicesSelectors from '../../../../store/services/services.selectors';
-
-const API_URL = 'http://localhost:3000';
+import { PortfolioService } from '../../../../core/services/portfolio.service';
+import { ServicesService } from '../../../../core/services/services.service';
+import { EarningsService } from '../../../../core/services/earnings.service';
 
 @Component({
   selector: 'app-profile-completion',
@@ -18,8 +18,10 @@ const API_URL = 'http://localhost:3000';
   styleUrls: ['./profile-completion.component.scss']
 })
 export class ProfileCompletionComponent implements OnInit {
-  private http = inject(HttpClient);
   private store = inject(Store);
+  private portfolioService = inject(PortfolioService);
+  private servicesService = inject(ServicesService);
+  private earningsService = inject(EarningsService);
 
   completionPercentage = 0;
   completionSteps = [
@@ -84,10 +86,8 @@ export class ProfileCompletionComponent implements OnInit {
   }
 
   private checkPortfolio(partnerId: string): Observable<boolean> {
-    return this.http
-      .get<any[]>(`${API_URL}/portfolio`, {
-        params: { partnerId }
-      })
+    return this.portfolioService
+      .getPortfolioByPartnerId(partnerId)
       .pipe(
         map((portfolios) => portfolios && portfolios.length > 0),
         catchError(() => of(false))
@@ -95,10 +95,8 @@ export class ProfileCompletionComponent implements OnInit {
   }
 
   private checkServices(partnerId: string): Observable<number> {
-    return this.http
-      .get<any[]>(`${API_URL}/services`, {
-        params: { partnerId }
-      })
+    return this.servicesService
+      .getServicesByPartnerId(partnerId)
       .pipe(
         map((services) => services?.length || 0),
         catchError(() => of(0))
@@ -106,12 +104,10 @@ export class ProfileCompletionComponent implements OnInit {
   }
 
   private checkBankDetails(partnerId: string): Observable<boolean> {
-    return this.http
-      .get<any[]>(`${API_URL}/earnings`, {
-        params: { partnerId }
-      })
+    return this.earningsService
+      .getPartnerEarnings(partnerId)
       .pipe(
-        map((earnings) => earnings && earnings.length > 0),
+        map((earnings) => !!earnings && !!earnings.id),
         catchError(() => of(false))
       );
   }

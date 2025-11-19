@@ -1,0 +1,143 @@
+<div class="signup-page">
+  <button class="back-btn" (click)="goBack()">
+    <span class="material-icons">arrow_back</span>
+    Back
+  </button>
+
+  <div class="signup-card">
+    <div class="logo">
+      <span class="logo-icon">UF</span>
+    </div>
+
+    <h1>Create Account</h1>
+    <p class="subtitle">Join thousands of happy customers</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <label> Full Name <span class="required">*</span> </label>
+        <input
+          type="text"
+          formControlName="userName"
+          placeholder="Enter your full name"
+          [class.error]="
+            form.get('userName')?.invalid && form.get('userName')?.touched
+          "
+        />
+        <span class="error-message" *ngIf="getErrorMessage('userName')">
+          {{ getErrorMessage('userName') }}
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label> Email Address <span class="required">*</span> </label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          [class.error]="
+            form.get('email')?.invalid && form.get('email')?.touched
+          "
+        />
+        <span class="error-message" *ngIf="getErrorMessage('email')">
+          {{ getErrorMessage('email') }}
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label>Phone Number</label>
+        <input
+          type="tel"
+          formControlName="phoneNumber"
+          placeholder="Enter your phone number"
+          [class.error]="
+            form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched
+          "
+        />
+        <span class="error-message" *ngIf="getErrorMessage('phoneNumber')">
+          {{ getErrorMessage('phoneNumber') }}
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label> Password <span class="required">*</span> </label>
+        <div class="password-input">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Create a password"
+            [class.error]="
+              form.get('password')?.invalid && form.get('password')?.touched
+            "
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="showPassword = !showPassword"
+          >
+            <span class="material-icons">
+              {{ showPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </button>
+        </div>
+        <span class="error-message" *ngIf="getErrorMessage('password')">
+          {{ getErrorMessage('password') }}
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label> Confirm Password <span class="required">*</span> </label>
+        <div class="password-input">
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            placeholder="Confirm your password"
+            [class.error]="
+              form.get('confirmPassword')?.invalid &&
+              form.get('confirmPassword')?.touched
+            "
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="showConfirmPassword = !showConfirmPassword"
+          >
+            <span class="material-icons">
+              {{ showConfirmPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </button>
+        </div>
+        <span class="error-message" *ngIf="getErrorMessage('confirmPassword')">
+          {{ getErrorMessage('confirmPassword') }}
+        </span>
+      </div>
+
+      <div class="terms-checkbox">
+        <input
+          type="checkbox"
+          id="terms"
+          [(ngModel)]="agreeToTerms"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <label for="terms">
+          I agree to the
+          <a href="#" class="link">Terms of Service</a>
+          and
+          <a href="#" class="link">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="!form.valid || !agreeToTerms"
+      >
+        Create Account
+      </button>
+    </form>
+
+    <p class="login-link">
+      Already have an account?
+      <a routerLink="/user/login" class="link">Login</a>
+    </p>
+  </div>
+</div>

@@ -11,13 +11,13 @@
     </div>
 
     <!-- Loading State -->
-    <div *ngIf="loading()" class="loading-state">
+    <div *ngIf="loading" class="loading-state">
       <div class="spinner"></div>
       <p>Loading earnings data...</p>
     </div>
 
     <!-- Content -->
-    <div *ngIf="!loading() && summary()" class="earnings-content">
+    <div *ngIf="!loading && summary" class="earnings-content">
       <!-- Stats Cards -->
       <div class="stats-grid">
         <div class="stat-card">
@@ -27,7 +27,7 @@
           <div class="stat-info">
             <p class="stat-label">Total Earnings</p>
             <h3 class="stat-value">
-              ₹{{ summary()!.totalEarnings.toLocaleString('en-IN') }}
+              ₹{{ summary!.totalEarnings.toLocaleString('en-IN') }}
             </h3>
           </div>
         </div>
@@ -39,7 +39,7 @@
           <div class="stat-info">
             <p class="stat-label">Available Balance</p>
             <h3 class="stat-value">
-              ₹{{ summary()!.availableBalance.toLocaleString('en-IN') }}
+              ₹{{ summary!.availableBalance.toLocaleString('en-IN') }}
             </h3>
           </div>
         </div>
@@ -82,7 +82,7 @@
               <span class="info-label">Available for Payout</span>
               <span class="info-value"
                 >₹{{
-                  summary()!.availableBalance.toLocaleString('en-IN')
+                  summary!.availableBalance.toLocaleString('en-IN')
                 }}</span
               >
             </div>
@@ -96,7 +96,7 @@
             <input
               type="number"
               [(ngModel)]="payoutAmount"
-              [max]="summary()?.availableBalance || 0"
+              [max]="summary!.availableBalance || 0"
               min="1000"
               placeholder="Enter amount to withdraw"
             />
@@ -106,9 +106,9 @@
             class="payout-button"
             (click)="requestPayout()"
             [disabled]="
-              !bankAccount() ||
+              !bankAccount ||
               payoutAmount < 1000 ||
-              payoutAmount > (summary()?.availableBalance || 0)
+              payoutAmount > (summary!.availableBalance || 0)
             "
           >
             Request Payout
@@ -120,14 +120,14 @@
       <div class="tabs-container">
         <button
           class="tab"
-          [class.active]="selectedTab() === 'transaction'"
+          [class.active]="selectedTab === 'transaction'"
           (click)="selectTab('transaction')"
         >
           Transaction History
         </button>
         <button
           class="tab"
-          [class.active]="selectedTab() === 'payout'"
+          [class.active]="selectedTab === 'payout'"
           (click)="selectTab('payout')"
         >
           Payout History
@@ -139,14 +139,14 @@
         <div class="list-header">
           <h3>
             {{
-              selectedTab() === 'transaction'
+              selectedTab === 'transaction'
                 ? 'Transaction History'
                 : 'Payout History'
             }}
           </h3>
           <p>
             {{
-              selectedTab() === 'transaction'
+              selectedTab === 'transaction'
                 ? 'All your earnings and payouts in chronological order'
                 : 'All your payout requests'
             }}
@@ -202,37 +202,37 @@
           <p>Payouts will be transferred to this account</p>
         </div>
 
-        <div *ngIf="!bankAccount() && !editingBankAccount()" class="no-bank">
+        <div *ngIf="!bankAccount && !editingBankAccount" class="no-bank">
           <p>No bank account added yet</p>
           <button class="add-bank-btn" (click)="toggleBankEdit()">
             Add Bank Account
           </button>
         </div>
 
-        <div *ngIf="bankAccount() && !editingBankAccount()" class="bank-info">
+        <div *ngIf="bankAccount && !editingBankAccount" class="bank-info">
           <div class="bank-row">
             <div class="bank-field">
               <label>Account Holder</label>
-              <p>{{ bankAccount()!.accountHolder }}</p>
+              <p>{{ bankAccount!.accountHolder }}</p>
             </div>
             <div class="bank-field">
               <label>Account Number</label>
-              <p>****{{ bankAccount()!.accountNumber.slice(-4) }}</p>
+              <p>****{{ bankAccount!.accountNumber.slice(-4) }}</p>
             </div>
             <div class="bank-field">
               <label>IFSC Code</label>
-              <p>{{ bankAccount()!.ifsc }}</p>
+              <p>{{ bankAccount!.ifsc }}</p>
             </div>
           </div>
         </div>
 
-        <div *ngIf="editingBankAccount()" class="bank-form">
+        <div *ngIf="editingBankAccount" class="bank-form">
           <div class="form-grid">
             <div class="form-field">
               <label>Account Holder Name</label>
               <input
                 type="text"
-                [value]="bankForm().accountHolder"
+                [value]="bankForm.accountHolder"
                 (input)="
                   updateBankField('accountHolder', $any($event.target).value)
                 "
@@ -244,7 +244,7 @@
               <label>Account Number</label>
               <input
                 type="text"
-                [value]="bankForm().accountNumber"
+                [value]="bankForm.accountNumber"
                 (input)="
                   updateBankField('accountNumber', $any($event.target).value)
                 "
@@ -256,7 +256,7 @@
               <label>IFSC Code</label>
               <input
                 type="text"
-                [value]="bankForm().ifsc"
+                [value]="bankForm.ifsc"
                 (input)="updateBankField('ifsc', $any($event.target).value)"
                 placeholder="Enter IFSC code"
                 style="text-transform: uppercase"
@@ -267,7 +267,7 @@
               <label>Bank Name</label>
               <input
                 type="text"
-                [value]="bankForm().bankName"
+                [value]="bankForm.bankName"
                 (input)="updateBankField('bankName', $any($event.target).value)"
                 placeholder="Enter bank name"
               />

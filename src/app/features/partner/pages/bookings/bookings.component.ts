@@ -34,7 +34,6 @@ import {
   EnrichedBooking
 } from '../../components/booking-card/booking-card.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
-import { HttpClient } from '@angular/common/http';
 
 type FilterType = 'all' | 'pending' | 'upcoming' | 'completed' | 'cancelled';
 
@@ -98,7 +97,7 @@ export class PartnerBookingsComponent implements OnInit, OnDestroy {
           return forkJoin({
             bookings: this.bookingService.getBookingsByPartnerId(user.id),
             services: this.servicesService.getAllServices(),
-            users: this.http.get<User[]>('http://localhost:3000/users')
+            users: this.userService.getAllUsers()
           });
         }),
         takeUntil(this.destroy$)
@@ -343,6 +342,4 @@ export class PartnerBookingsComponent implements OnInit, OnDestroy {
     }).length;
   }
 
-  // Add HttpClient for users fetch
-  private http = inject(HttpClient);
 }

@@ -1,18 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { User } from '../../../../core/models/user.model';
 import * as AuthSelectors from '../../../../store/auth/auth.selectors';
-
-interface Portfolio {
-  id: string;
-  partnerId: string;
-  imageUrl: string;
-  caption: string;
-}
+import { PortfolioService, Portfolio } from '../../../../core/services/portfolio.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -22,7 +15,7 @@ interface Portfolio {
   styleUrl: './portfolio.component.scss'
 })
 export class PortfolioComponent implements OnInit {
-  private http = inject(HttpClient);
+  private portfolioService = inject(PortfolioService);
   private store = inject(Store);
 
   portfolioItems: Portfolio[] = [];
@@ -37,9 +30,7 @@ export class PortfolioComponent implements OnInit {
   }
 
   loadPortfolio(partnerId: string) {
-    this.http.get<Portfolio[]>('http://localhost:3000/portfolio', {
-      params: { partnerId }
-    }).subscribe({
+    this.portfolioService.getPortfolioByPartnerId(partnerId).subscribe({
       next: (items) => {
         this.portfolioItems = items;
         this.loading = false;

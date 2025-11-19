@@ -15,6 +15,12 @@ const API_URL =
 export class UserService {
   private http = inject(HttpClient);
 
+  getAllUsers(): Observable<User[]> {
+    return this.http
+      .get<User[]>(`${API_URL}/users`)
+      .pipe(this.handleHttpError('Failed to fetch users'));
+  }
+
   getUserById(id: string): Observable<User> {
     return this.http
       .get<User>(`${API_URL}/users/${id}`)

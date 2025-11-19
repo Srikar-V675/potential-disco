@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -23,20 +23,20 @@ export class EarningsComponent implements OnInit {
   private store = inject(Store);
 
   partnerId = '';
-  summary = signal<EarningsSummary | null>(null);
-  transactions = signal<Transaction[]>([]);
-  selectedTab = signal<'transaction' | 'payout'>('transaction');
-  loading = signal(true);
-  bankAccount = signal<BankAccount | null>(null);
-  editingBankAccount = signal(false);
+  summary: EarningsSummary | null = null;
+  transactions: Transaction[] = [];
+  selectedTab: 'transaction' | 'payout' = 'transaction';
+  loading = true;
+  bankAccount: BankAccount | null = null;
+  editingBankAccount = false;
   payoutAmount = 0;
 
-  bankForm = signal<BankAccount>({
+  bankForm: BankAccount = {
     accountHolder: '',
     accountNumber: '',
     ifsc: '',
     bankName: ''
-  });
+  };
 
   ngOnInit() {
     this.store.select(AuthSelectors.selectCurrentUser).pipe(
@@ -44,15 +44,13 @@ export class EarningsComponent implements OnInit {
       switchMap((user) => {
         console.log('👤 Current user from store:', user);
         this.partnerId = user.id;
-
-        // Fetch fresh user data to get latest bank account info
         return this.userService.getUserById(user.id);
       }),
       switchMap((freshUser) => {
         console.log('👤 Fresh user data:', freshUser);
         if (freshUser.bankAccount) {
           console.log('🏦 Bank account found:', freshUser.bankAccount);
-          this.bankAccount.set(freshUser.bankAccount);
+          this.bankAccount = freshUser.bankAccount;
         } else {
           console.log('⚠️ No bank account found for user');
         }
@@ -61,12 +59,12 @@ export class EarningsComponent implements OnInit {
     ).subscribe({
       next: (summary) => {
         console.log('💰 Earnings summary:', summary);
-        this.summary.set(summary);
+        this.summary = summary;
         this.loadTransactions();
       },
       error: (err) => {
         console.error('❌ Error loading earnings:', err);
-        this.loading.set(false);
+        this.loading = false;
       }
     });
   }
@@ -74,40 +72,36 @@ export class EarningsComponent implements OnInit {
   loadTransactions() {
     this.earningsService.getTransactionHistory(this.partnerId).subscribe({
       next: (transactions) => {
-        const sorted = transactions.sort((a, b) => b.dateTime - a.dateTime);
-        this.transactions.set(sorted);
-        this.loading.set(false);
+        this.transactions = transactions.sort((a, b) => b.dateTime - a.dateTime);
+        this.loading = false;
       },
       error: (err) => {
         console.error('Error loading transactions:', err);
-        this.loading.set(false);
+        this.loading = false;
       }
     });
   }
 
   get filteredTransactions() {
-    const tab = this.selectedTab();
-    const all = this.transactions();
-
-    if (tab === 'transaction') {
-      return all;
+    if (this.selectedTab === 'transaction') {
+      return this.transactions;
     } else {
-      return all.filter(t => t.type === 'payout');
+      return this.transactions.filter(t => t.type === 'payout');
     }
   }
 
   selectTab(tab: 'transaction' | 'payout') {
-    this.selectedTab.set(tab);
+    this.selectedTab = tab;
   }
 
   setMaxPayout() {
-    this.payoutAmount = this.summary()?.availableBalance || 0;
+    this.payoutAmount = this.summary?.availableBalance || 0;
   }
 
   requestPayout() {
     const amount = this.payoutAmount;
-    const bank = this.bankAccount();
-    const balance = this.summary()?.availableBalance || 0;
+    const bank = this.bankAccount;
+    const balance = this.summary?.availableBalance || 0;
 
     if (!bank) {
       alert('Please add bank account details first');
@@ -141,21 +135,19 @@ export class EarningsComponent implements OnInit {
   }
 
   toggleBankEdit() {
-    this.editingBankAccount.set(!this.editingBankAccount());
+    this.editingBankAccount = !this.editingBankAccount;
   }
 
   saveBankAccount() {
-    const form = this.bankForm();
-
-    if (!form.accountHolder || !form.accountNumber || !form.ifsc || !form.bankName) {
+    if (!this.bankForm.accountHolder || !this.bankForm.accountNumber || !this.bankForm.ifsc || !this.bankForm.bankName) {
       alert('All fields are required');
       return;
     }
 
-    this.userService.addBankAccount(this.partnerId, form).subscribe({
+    this.userService.addBankAccount(this.partnerId, this.bankForm).subscribe({
       next: () => {
-        this.bankAccount.set(form);
-        this.editingBankAccount.set(false);
+        this.bankAccount = { ...this.bankForm };
+        this.editingBankAccount = false;
         alert('Bank account updated successfully');
       },
       error: (err) => {
@@ -165,10 +157,10 @@ export class EarningsComponent implements OnInit {
   }
 
   updateBankField(field: keyof BankAccount, value: string) {
-    this.bankForm.update(form => ({
-      ...form,
+    this.bankForm = {
+      ...this.bankForm,
       [field]: value
-    }));
+    };
   }
 
   formatDate(timestamp: number): string {
@@ -180,7 +172,7 @@ export class EarningsComponent implements OnInit {
   }
 
   getLastPayout(): number {
-    const payouts = this.transactions().filter(t => t.type === 'payout');
+    const payouts = this.transactions.filter((t: Transaction) => t.type === 'payout');
     return payouts.length > 0 ? payouts[0].amount : 0;
   }
 

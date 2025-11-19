@@ -2,9 +2,10 @@
 
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil, filter } from 'rxjs';
+import { Subject, takeUntil, filter, debounceTime, distinctUntilChanged } from 'rxjs';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { User } from '../../../../core/models/user.model';
 import {
@@ -12,25 +13,29 @@ import {
   selectIsAuthenticated
 } from '../../../../store/auth/auth.selectors';
 import * as AuthActions from '../../../../store/auth/auth.actions';
+import { SearchService } from '../../../../core/services/search.service';
 
 type HeaderType = 'partner' | 'customer';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, ButtonComponent],
+  imports: [CommonModule, RouterModule, ButtonComponent, FormsModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private store = inject(Store);
+  private searchService = inject(SearchService);
   private destroy$ = new Subject<void>();
+  private searchSubject = new Subject<string>();
 
   headerType: HeaderType = 'customer';
   isAuthenticated = false;
   currentUser: User | null = null;
-  showProfileDropdown = false;
+  searchQuery = '';
+  showSearchBar = false;
 
   ngOnInit(): void {
     // Determine header type from initial route
@@ -61,12 +66,38 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.currentUser = user;
       });
 
-    console.log(this.isAuthenticated);
-    console.log(this.currentUser);
+    // Setup search with debounce
+    this.searchSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      takeUntil(this.destroy$)
+    ).subscribe(query => {
+      this.searchService.setSearchQuery(query);
+    });
   }
 
   private updateHeaderType(url: string): void {
     this.headerType = url.includes('/partner') ? 'partner' : 'customer';
+    // Show search bar only on user dashboard
+    this.showSearchBar = this.isAuthenticated &&
+      this.headerType === 'customer' &&
+      url.includes('/dashboard');
+  }
+
+  onSearchInput(event: any) {
+    const query = event.target.value;
+    this.searchQuery = query;
+
+    if (query.trim()) {
+      this.searchService.setShowResults(true);
+      this.searchSubject.next(query);
+    } else {
+      this.searchService.clearSearch();
+    }
+  }
+
+  goToProfile() {
+    this.router.navigate(['/user/profile']);
   }
 
   get logoText(): string {
@@ -89,15 +120,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout(): void {
     this.store.dispatch(AuthActions.logout());
-    this.showProfileDropdown = false;
-  }
-
-  toggleProfileDropdown(): void {
-    this.showProfileDropdown = !this.showProfileDropdown;
-  }
-
-  closeDropdown(): void {
-    this.showProfileDropdown = false;
   }
 
   ngOnDestroy(): void {

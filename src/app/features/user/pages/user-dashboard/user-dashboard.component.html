@@ -1,0 +1,181 @@
+<!-- Search Results Dropdown (positioned below header) -->
+<div
+  class="search-results-overlay"
+  *ngIf="showSearchResults && searchResults.length > 0"
+>
+  <div
+    class="search-result-item"
+    *ngFor="let service of searchResults"
+    (click)="selectSearchResult(service)"
+  >
+    <div class="result-title">{{ service.title }}</div>
+    <div class="result-price">{{ getServicePrice(service) }}</div>
+  </div>
+</div>
+
+<div
+  class="search-results-overlay"
+  *ngIf="showSearchResults && searchResults.length === 0"
+>
+  <div class="no-results">No services found</div>
+</div>
+
+<div class="dashboard-container">
+  <!-- Location and Welcome Section -->
+  <div class="welcome-section">
+    <div class="location">
+      <span class="location-icon">📍</span>
+      <span class="location-text">Mumbai, Maharashtra</span>
+      <span class="change-link">Change</span>
+    </div>
+    <h1 class="welcome-title">Welcome back!</h1>
+    <p class="welcome-subtitle">What would you like to fix today?</p>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <div class="action-card" (click)="browseServices()">
+      <span class="material-icons action-icon">search</span>
+      <span class="action-label">Browse Services</span>
+    </div>
+    <div class="action-card" (click)="viewAllBookings()">
+      <span class="material-icons action-icon">calendar_today</span>
+      <span class="action-label">My Bookings</span>
+    </div>
+    <div class="action-card">
+      <span class="material-icons action-icon">notifications</span>
+      <span class="action-label">Notifications</span>
+    </div>
+    <div class="action-card" (click)="toggleChat()">
+      <span class="material-icons action-icon">chat_bubble</span>
+      <span class="action-label">Support</span>
+    </div>
+  </div>
+
+  <!-- Recent Bookings -->
+  <div class="section recent-bookings" *ngIf="recentBookings.length > 0">
+    <div class="section-header">
+      <h2 class="section-title">Recent Bookings</h2>
+      <button class="view-all-btn" (click)="viewAllBookings()">View All</button>
+    </div>
+    <div class="bookings-grid">
+      <div class="booking-card" *ngFor="let booking of recentBookings">
+        <div class="booking-header">
+          <h3 class="booking-title">{{ booking.serviceId }}</h3>
+          <span
+            class="booking-status"
+            [class]="'status-' + getBookingStatus(booking)"
+          >
+            {{ getBookingStatus(booking) }}
+          </span>
+        </div>
+        <p class="booking-provider">Provider: {{ booking.userId }}</p>
+        <p class="booking-date">
+          {{ booking.schedule | date : 'MMM d, yyyy' }}
+        </p>
+        <div
+          class="booking-rating"
+          *ngIf="getBookingStatus(booking) === 'completed'"
+        >
+          <span class="star">⭐</span>
+          <span>5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommended Services -->
+  <div class="section recommended-services">
+    <div class="section-header">
+      <h2 class="section-title">📈 Recommended for You</h2>
+    </div>
+    <div class="services-grid">
+      <div
+        class="service-card"
+        *ngFor="let service of recommendedServices; let i = index"
+        (click)="viewService(service.id)"
+      >
+        <div class="service-image">
+          <img
+            [src]="getServiceImage(i)"
+            [alt]="service.title"
+            class="service-img"
+          />
+        </div>
+        <div class="service-info">
+          <h3 class="service-title">{{ service.title }}</h3>
+          <p class="service-price">
+            Starting at {{ getServicePrice(service) }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Categories -->
+  <div class="section popular-categories">
+    <h2 class="section-title">Popular Categories</h2>
+    <div class="categories-grid">
+      <div
+        class="category-card"
+        *ngFor="let category of categories"
+        (click)="viewCategory(category.id)"
+      >
+        <span class="material-icons category-icon">{{ category.icon }}</span>
+        <span class="category-name">{{ category.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Chat Button -->
+<button class="floating-chat-btn" (click)="toggleChat()" *ngIf="!showChat">
+  <span class="material-icons">chat</span>
+</button>
+
+<!-- Chat Window -->
+<div class="chat-window" *ngIf="showChat">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-icon">
+        <span class="material-icons">chat</span>
+      </div>
+      <div class="chat-header-text">
+        <h3>Live Support</h3>
+        <span class="online-status">
+          <span class="online-dot"></span>
+          Online
+        </span>
+      </div>
+    </div>
+    <button class="close-chat-btn" (click)="closeChat()">✕</button>
+  </div>
+  <div class="chat-messages">
+    <div
+      class="chat-message"
+      *ngFor="let message of chatMessages"
+      [class.user-message]="message.isUser"
+      [class.bot-message]="!message.isUser"
+    >
+      <div class="message-bubble">
+        {{ message.text }}
+      </div>
+      <div class="message-time">
+        {{ message.timestamp | date : 'shortTime' }}
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-container">
+    <input
+      type="text"
+      class="chat-input"
+      placeholder="Type your message..."
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+    />
+    <button class="send-btn" (click)="sendMessage()">
+      <span class="material-icons">send</span>
+    </button>
+    <p class="chat-footer-text">We typically reply within minutes</p>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+<div class="landing-page">
+  <!-- Hero Section with Carousel -->
+  <section class="hero-section">
+    <div class="carousel">
+      <div
+        class="carousel-inner"
+        [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
+      >
+        <div *ngFor="let slide of slides" class="carousel-slide">
+          <img [src]="slide.image" [alt]="slide.text" />
+          <div class="slide-overlay"></div>
+        </div>
+      </div>
+
+      <!-- Floating Review Cards -->
+      <div class="floating-reviews">
+        <div class="review-card review-left">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>Great experienced plumbing service. Highly recommend!</p>
+          <span>- John Doe</span>
+        </div>
+        <div class="review-card review-right">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>Amazing cleaning service! My house looks brand new.</p>
+          <span>- Sarah Smith</span>
+        </div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <h1>Home Services at Your Doorstep</h1>
+        <p>Book trusted professionals for cleaning, repairs, and more</p>
+
+        <div class="search-box">
+          <div class="search-input">
+            <span class="material-icons">location_on</span>
+            <input type="text" placeholder="Enter your location" />
+          </div>
+          <div class="search-input">
+            <span class="material-icons">search</span>
+            <input
+              type="text"
+              placeholder="Search for services, AC repair, Cleaning..."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Indicators -->
+      <div class="carousel-indicators">
+        <button
+          *ngFor="let slide of slides; let i = index"
+          [class.active]="currentSlide === i"
+          (click)="goToSlide(i)"
+        ></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Services -->
+  <section class="popular-services">
+    <h2>Popular Services</h2>
+    <div class="services-grid">
+      <div *ngFor="let service of services" class="service-item">
+        <div class="service-icon">{{ service.icon }}</div>
+        <p>{{ service.name }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose UrbanFix -->
+  <section class="why-choose">
+    <h2>Why Choose UrbanFix?</h2>
+    <div class="features-grid">
+      <div *ngFor="let feature of features" class="feature-item">
+        <div class="feature-icon">
+          <span class="material-icons">{{ feature.icon }}</span>
+        </div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <h3>Select Service</h3>
+        <p>Choose from our wide range of services</p>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <h3>Book & Schedule</h3>
+        <p>Pick a date and time that works for you</p>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <h3>Relax & Enjoy</h3>
+        <p>Our verified professionals get the job done</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonials-grid">
+      <div *ngFor="let testimonial of testimonials" class="testimonial-item">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>{{ testimonial.text }}</p>
+        <span>- {{ testimonial.author }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Get Started?</h2>
+    <p>Join thousands of happy customers who trust UrbanFix</p>
+    <button class="btn-cta" routerLink="/user/signup">Sign Up Now</button>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <div class="footer-logo">
+          <span class="logo-icon">UF</span>
+          <span class="logo-text">UrbanFix</span>
+        </div>
+        <p>Your trusted home services platform</p>
+      </div>
+      <div class="footer-column">
+        <h4>Services</h4>
+        <a href="#">Cleaning</a>
+        <a href="#">Plumbing</a>
+        <a href="#">Electrical</a>
+        <a href="#">Painting</a>
+      </div>
+      <div class="footer-column">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Return Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 UrbanFix. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

@@ -21,8 +21,7 @@ import { ServiceCreateDTO } from '../../../../core/models/service.model';
     MatIconModule,
     PartnerBasicInfoStepComponent,
     PartnerCategoryStepComponent,
-    PartnerServicesStepComponent,
-    ButtonComponent
+    PartnerServicesStepComponent
   ],
   providers: [PartnerRegistrationStore],
   templateUrl: './partner-registration-container.component.html',
