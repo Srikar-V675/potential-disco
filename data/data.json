@@ -507,10 +507,11 @@
       "price": 299,
       "offerDiscount": 25,
       "convenienceFee": 50,
-      "status": "confirmed",
+      "status": "completed",
       "schedule": 1737619200000,
       "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
-      "createdAt": 1732579200000
+      "createdAt": 1732579200000,
+      "completedAt": 1763593737750
     }
   ],
   "portfolio": [
@@ -555,8 +556,8 @@
     {
       "id": "earn-001",
       "partnerId": "partner-001",
-      "earnings": 15847,
-      "balance": 8420
+      "earnings": 16071.25,
+      "balance": 8644.25
     }
   ],
   "transactions": [
@@ -708,6 +709,16 @@
       "from": "Anjali Reddy",
       "dateTime": 1729036800000,
       "amount": 899,
+      "type": "earning"
+    },
+    {
+      "id": "857cd927-217c-43a4-a641-d396d1201782",
+      "partnerId": "partner-001",
+      "bookingId": "book-008",
+      "title": "Switch & Socket Repair",
+      "from": "Priya Sharma",
+      "dateTime": 1763593737778,
+      "amount": 224.25,
       "type": "earning"
     }
   ]
