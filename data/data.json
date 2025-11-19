@@ -1,0 +1,714 @@
+{
+  "users": [
+    {
+      "id": "partner-001",
+      "userName": "Rajesh Kumar",
+      "phoneNumber": 9876543210,
+      "role": "partner",
+      "email": "rajesh.kumar@urbanfix.com",
+      "password": "Partner@123",
+      "bio": "Professional home services provider with 8+ years of experience. Specialized in cleaning, plumbing, and electrical work. Committed to delivering quality service with 100% customer satisfaction.",
+      "addresses": [
+        {
+          "tag": "Business",
+          "street": "Shop No. 15, Andheri West",
+          "city": "Mumbai",
+          "state": "Maharashtra",
+          "pincode": 400058
+        }
+      ],
+      "bankAccount": {
+        "accountHolder": "Rajesh Kumar",
+        "accountNumber": "1234567890123",
+        "ifsc": "HDFC0001234",
+        "bankName": "HDFC Bank"
+      },
+      "serviceAreas": [
+        "400058",
+        "400050",
+        "400076",
+        "400063",
+        "400064"
+      ]
+    },
+    {
+      "id": "user-001",
+      "userName": "Priya Sharma",
+      "phoneNumber": 9123456789,
+      "role": "user",
+      "email": "priya.sharma@gmail.com",
+      "password": "User@123",
+      "bio": "Regular customer looking for reliable home services",
+      "addresses": [
+        {
+          "tag": "Home",
+          "street": "Flat 302, Sunrise Apartments, Juhu",
+          "city": "Mumbai",
+          "state": "Maharashtra",
+          "pincode": 400058
+        },
+        {
+          "tag": "Office",
+          "street": "Office 501, Tech Park, Bandra",
+          "city": "Mumbai",
+          "state": "Maharashtra",
+          "pincode": 400050
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-001",
+      "name": "Cleaning",
+      "icon": "cleaning_services"
+    },
+    {
+      "id": "cat-002",
+      "name": "Plumbing",
+      "icon": "plumbing"
+    },
+    {
+      "id": "cat-003",
+      "name": "Electrical",
+      "icon": "electrical_services"
+    },
+    {
+      "id": "cat-004",
+      "name": "Painting",
+      "icon": "format_paint"
+    },
+    {
+      "id": "cat-005",
+      "name": "Carpentry",
+      "icon": "handyman"
+    },
+    {
+      "id": "cat-006",
+      "name": "Appliances",
+      "icon": "kitchen"
+    }
+  ],
+  "services": [
+    {
+      "id": "svc-001",
+      "partnerId": "partner-001",
+      "title": "Deep Home Cleaning",
+      "description": "Professional deep home cleaning service that covers all areas of your home. Our trained professionals use eco-friendly cleaning products and advanced equipment to ensure a spotless and hygienic living space.",
+      "categoryId": "cat-001",
+      "priceType": "hourly",
+      "price": 599,
+      "duration": 180,
+      "hasOffer": true,
+      "offerTitle": "Weekend Special",
+      "offerDiscount": 20,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-001",
+          "rating": 5,
+          "comment": "Excellent service! The team was professional, punctual, and did an amazing job. My home has never looked this clean. Highly recommend!",
+          "createdAt": 1732147200000
+        },
+        {
+          "userId": "user-002",
+          "rating": 5,
+          "comment": "Very thorough cleaning. They paid attention to every detail and used good quality products. Will definitely book again.",
+          "createdAt": 1731974400000
+        },
+        {
+          "userId": "user-003",
+          "rating": 4,
+          "comment": "Good service overall. The cleaning was done well, though they took a bit longer than expected. Still satisfied with the results.",
+          "createdAt": 1731801600000
+        }
+      ]
+    },
+    {
+      "id": "svc-002",
+      "partnerId": "partner-001",
+      "title": "Bathroom Deep Cleaning",
+      "description": "Specialized bathroom cleaning service including tiles, fixtures, mirrors, and sanitization. We remove tough stains, soap scum, and ensure complete hygiene.",
+      "categoryId": "cat-001",
+      "priceType": "fixed",
+      "price": 899,
+      "duration": 120,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-001",
+          "rating": 5,
+          "comment": "My bathroom looks brand new! They removed all the hard water stains and made everything sparkle. Excellent work!",
+          "createdAt": 1732320000000
+        }
+      ]
+    },
+    {
+      "id": "svc-003",
+      "partnerId": "partner-001",
+      "title": "Kitchen Deep Cleaning",
+      "description": "Complete kitchen cleaning including cabinets, countertops, appliances, chimney, and floor. We use food-safe cleaning products and ensure complete sanitization.",
+      "categoryId": "cat-001",
+      "priceType": "fixed",
+      "price": 1299,
+      "duration": 150,
+      "hasOffer": true,
+      "offerTitle": "New Year Offer",
+      "offerDiscount": 15,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-001",
+          "rating": 5,
+          "comment": "Amazing service! They cleaned my kitchen chimney and it looks brand new. Very professional team.",
+          "createdAt": 1732060800000
+        },
+        {
+          "userId": "user-004",
+          "rating": 4,
+          "comment": "Good cleaning service. The kitchen looks much better now. Would have given 5 stars if they had cleaned the exhaust fan too.",
+          "createdAt": 1731628800000
+        }
+      ]
+    },
+    {
+      "id": "svc-004",
+      "partnerId": "partner-001",
+      "title": "Plumbing Leak Repair",
+      "description": "Expert plumbing services for leak detection and repair. We fix leaking taps, pipes, and water connections quickly and efficiently.",
+      "categoryId": "cat-002",
+      "priceType": "hourly",
+      "price": 499,
+      "duration": 60,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-001",
+          "rating": 5,
+          "comment": "Quick and efficient service. Fixed my leaking tap in no time. Very reasonable pricing too!",
+          "createdAt": 1732492800000
+        },
+        {
+          "userId": "user-005",
+          "rating": 5,
+          "comment": "Excellent plumber! He identified the issue quickly and fixed it properly. No more leaks!",
+          "createdAt": 1731456000000
+        }
+      ]
+    },
+    {
+      "id": "svc-005",
+      "partnerId": "partner-001",
+      "title": "Pipe Installation & Repair",
+      "description": "Professional pipe installation and repair services for bathrooms and kitchens. We handle all types of plumbing work with quality materials.",
+      "categoryId": "cat-002",
+      "priceType": "fixed",
+      "price": 1599,
+      "duration": 240,
+      "hasOffer": true,
+      "offerTitle": "Monsoon Special",
+      "offerDiscount": 10,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-006",
+          "rating": 4,
+          "comment": "Good work. They installed new pipes in my bathroom and did a clean job. Slightly expensive but worth it.",
+          "createdAt": 1731283200000
+        }
+      ]
+    },
+    {
+      "id": "svc-006",
+      "partnerId": "partner-001",
+      "title": "Electrical Wiring & Installation",
+      "description": "Complete electrical wiring services for homes and offices. We handle new installations, repairs, and safety checks with certified electricians.",
+      "categoryId": "cat-003",
+      "priceType": "hourly",
+      "price": 699,
+      "duration": 120,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-001",
+          "rating": 5,
+          "comment": "Very professional electrician. He fixed all the wiring issues in my home and explained everything clearly. Highly recommended!",
+          "createdAt": 1732233600000
+        },
+        {
+          "userId": "user-007",
+          "rating": 5,
+          "comment": "Excellent service! They installed new wiring for my AC and did a very neat job. Safety conscious and professional.",
+          "createdAt": 1731110400000
+        }
+      ]
+    },
+    {
+      "id": "svc-007",
+      "partnerId": "partner-001",
+      "title": "Switch & Socket Repair",
+      "description": "Quick repair and replacement of electrical switches, sockets, and fixtures. We ensure safe and proper electrical connections.",
+      "categoryId": "cat-003",
+      "priceType": "fixed",
+      "price": 299,
+      "duration": 30,
+      "hasOffer": true,
+      "offerTitle": "Quick Fix Offer",
+      "offerDiscount": 25,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-008",
+          "rating": 4,
+          "comment": "Fast service. Came on time and fixed the switches quickly. Good value for money.",
+          "createdAt": 1730937600000
+        }
+      ]
+    },
+    {
+      "id": "svc-008",
+      "partnerId": "partner-001",
+      "title": "Interior Wall Painting",
+      "description": "Professional interior painting services with premium quality paints. We prepare walls, apply primer, and give a smooth finish.",
+      "categoryId": "cat-004",
+      "priceType": "daily",
+      "price": 2499,
+      "duration": 2,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-009",
+          "rating": 5,
+          "comment": "Fantastic painting job! The walls look perfect and the finish is very smooth. They were also very clean in their work.",
+          "createdAt": 1730764800000
+        },
+        {
+          "userId": "user-010",
+          "rating": 4,
+          "comment": "Good painting service. They did a nice job on my bedroom walls. Took 2 days as mentioned.",
+          "createdAt": 1730592000000
+        }
+      ]
+    },
+    {
+      "id": "svc-009",
+      "partnerId": "partner-001",
+      "title": "Furniture Assembly & Repair",
+      "description": "Expert carpentry services for furniture assembly, repair, and customization. We work with all types of wood and materials.",
+      "categoryId": "cat-005",
+      "priceType": "hourly",
+      "price": 599,
+      "duration": 120,
+      "hasOffer": true,
+      "offerTitle": "Festive Offer",
+      "offerDiscount": 15,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-001",
+          "rating": 5,
+          "comment": "Excellent carpenter! He assembled my new wardrobe perfectly and even fixed my old bookshelf. Very skilled!",
+          "createdAt": 1730419200000
+        }
+      ]
+    },
+    {
+      "id": "svc-010",
+      "partnerId": "partner-001",
+      "title": "AC Service & Repair",
+      "description": "Complete AC servicing including gas refilling, cleaning, and repair. We service all brands and ensure optimal cooling performance.",
+      "categoryId": "cat-006",
+      "priceType": "fixed",
+      "price": 799,
+      "duration": 90,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-001",
+          "rating": 5,
+          "comment": "Great AC service! My AC is cooling much better now. The technician was knowledgeable and explained everything.",
+          "createdAt": 1730246400000
+        },
+        {
+          "userId": "user-011",
+          "rating": 5,
+          "comment": "Very professional service. They cleaned my AC thoroughly and it's working like new. Highly recommend!",
+          "createdAt": 1730073600000
+        },
+        {
+          "userId": "user-012",
+          "rating": 4,
+          "comment": "Good service. AC is working fine now. They could have been a bit faster though.",
+          "createdAt": 1729900800000
+        }
+      ]
+    },
+    {
+      "id": "svc-011",
+      "partnerId": "partner-001",
+      "title": "Washing Machine Repair",
+      "description": "Expert washing machine repair services for all brands. We fix drainage issues, motor problems, and electrical faults.",
+      "categoryId": "cat-006",
+      "priceType": "fixed",
+      "price": 599,
+      "duration": 60,
+      "hasOffer": true,
+      "offerTitle": "Appliance Care",
+      "offerDiscount": 20,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-013",
+          "rating": 5,
+          "comment": "Fixed my washing machine perfectly! It was making noise and not draining properly. Now it works great!",
+          "createdAt": 1729728000000
+        }
+      ]
+    },
+    {
+      "id": "svc-012",
+      "partnerId": "partner-001",
+      "title": "Sofa Cleaning",
+      "description": "Professional sofa and upholstery cleaning using steam cleaning technology. We remove stains, odors, and allergens effectively.",
+      "categoryId": "cat-001",
+      "priceType": "per item",
+      "price": 899,
+      "duration": 90,
+      "hasOffer": false,
+      "offerTitle": "",
+      "offerDiscount": 0,
+      "active": true,
+      "ratings": [
+        {
+          "userId": "user-014",
+          "rating": 5,
+          "comment": "Amazing sofa cleaning! They removed all the stains and my sofa looks brand new. Very impressed!",
+          "createdAt": 1729555200000
+        },
+        {
+          "userId": "user-015",
+          "rating": 4,
+          "comment": "Good cleaning service. My sofa looks much better now. The fabric feels fresh and clean.",
+          "createdAt": 1729382400000
+        }
+      ]
+    }
+  ],
+  "bookings": [
+    {
+      "id": "book-001",
+      "userId": "user-001",
+      "serviceId": "svc-001",
+      "price": 599,
+      "offerDiscount": 20,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1732147200000,
+      "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
+      "createdAt": 1732060800000,
+      "completedAt": 1732150800000
+    },
+    {
+      "id": "book-002",
+      "userId": "user-001",
+      "serviceId": "svc-002",
+      "price": 899,
+      "offerDiscount": 0,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1732320000000,
+      "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
+      "createdAt": 1732233600000,
+      "completedAt": 1732323600000
+    },
+    {
+      "id": "book-003",
+      "userId": "user-001",
+      "serviceId": "svc-003",
+      "price": 1299,
+      "offerDiscount": 15,
+      "convenienceFee": 50,
+      "status": "confirmed",
+      "schedule": 1737532800000,
+      "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
+      "createdAt": 1732492800000
+    },
+    {
+      "id": "book-004",
+      "userId": "user-001",
+      "serviceId": "svc-004",
+      "price": 499,
+      "offerDiscount": 0,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1732492800000,
+      "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
+      "createdAt": 1732406400000,
+      "completedAt": 1732496400000
+    },
+    {
+      "id": "book-005",
+      "userId": "user-001",
+      "serviceId": "svc-006",
+      "price": 699,
+      "offerDiscount": 0,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1732233600000,
+      "address": "Office 501, Tech Park, Bandra, Mumbai, Maharashtra, 400050",
+      "createdAt": 1732147200000,
+      "completedAt": 1732237200000
+    },
+    {
+      "id": "book-006",
+      "userId": "user-001",
+      "serviceId": "svc-009",
+      "price": 599,
+      "offerDiscount": 15,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1730419200000,
+      "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
+      "createdAt": 1730332800000,
+      "completedAt": 1730422800000
+    },
+    {
+      "id": "book-007",
+      "userId": "user-001",
+      "serviceId": "svc-010",
+      "price": 799,
+      "offerDiscount": 0,
+      "convenienceFee": 50,
+      "status": "completed",
+      "schedule": 1730246400000,
+      "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
+      "createdAt": 1730160000000,
+      "completedAt": 1730250000000
+    },
+    {
+      "id": "book-008",
+      "userId": "user-001",
+      "serviceId": "svc-007",
+      "price": 299,
+      "offerDiscount": 25,
+      "convenienceFee": 50,
+      "status": "confirmed",
+      "schedule": 1737619200000,
+      "address": "Flat 302, Sunrise Apartments, Juhu, Mumbai, Maharashtra, 400058",
+      "createdAt": 1732579200000
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "port-001",
+      "partnerId": "partner-001",
+      "imageUrl": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=400&fit=crop",
+      "caption": "Deep Home Cleaning - Living Room Transformation"
+    },
+    {
+      "id": "port-002",
+      "partnerId": "partner-001",
+      "imageUrl": "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600&h=400&fit=crop",
+      "caption": "Kitchen Deep Cleaning - Before and After"
+    },
+    {
+      "id": "port-003",
+      "partnerId": "partner-001",
+      "imageUrl": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&h=400&fit=crop",
+      "caption": "Interior Wall Painting - Bedroom Makeover"
+    },
+    {
+      "id": "port-004",
+      "partnerId": "partner-001",
+      "imageUrl": "https://images.unsplash.com/photo-1581578949510-fa7315c4c350?w=600&h=400&fit=crop",
+      "caption": "Plumbing Work - Bathroom Renovation"
+    },
+    {
+      "id": "port-005",
+      "partnerId": "partner-001",
+      "imageUrl": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop",
+      "caption": "Electrical Wiring - Complete Home Setup"
+    },
+    {
+      "id": "port-006",
+      "partnerId": "partner-001",
+      "imageUrl": "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop",
+      "caption": "Carpentry Work - Custom Furniture Installation"
+    }
+  ],
+  "earnings": [
+    {
+      "id": "earn-001",
+      "partnerId": "partner-001",
+      "earnings": 15847,
+      "balance": 8420
+    }
+  ],
+  "transactions": [
+    {
+      "id": "txn-001",
+      "partnerId": "partner-001",
+      "bookingId": "book-001",
+      "title": "Deep Home Cleaning",
+      "from": "Priya Sharma",
+      "dateTime": 1732150800000,
+      "amount": 479,
+      "type": "earning"
+    },
+    {
+      "id": "txn-002",
+      "partnerId": "partner-001",
+      "bookingId": "book-002",
+      "title": "Bathroom Deep Cleaning",
+      "from": "Priya Sharma",
+      "dateTime": 1732323600000,
+      "amount": 899,
+      "type": "earning"
+    },
+    {
+      "id": "txn-003",
+      "partnerId": "partner-001",
+      "bookingId": "book-004",
+      "title": "Plumbing Leak Repair",
+      "from": "Priya Sharma",
+      "dateTime": 1732496400000,
+      "amount": 499,
+      "type": "earning"
+    },
+    {
+      "id": "txn-004",
+      "partnerId": "partner-001",
+      "bookingId": "book-005",
+      "title": "Electrical Wiring & Installation",
+      "from": "Priya Sharma",
+      "dateTime": 1732237200000,
+      "amount": 699,
+      "type": "earning"
+    },
+    {
+      "id": "txn-005",
+      "partnerId": "partner-001",
+      "bookingId": "book-006",
+      "title": "Furniture Assembly & Repair",
+      "from": "Priya Sharma",
+      "dateTime": 1730422800000,
+      "amount": 509,
+      "type": "earning"
+    },
+    {
+      "id": "txn-006",
+      "partnerId": "partner-001",
+      "bookingId": "book-007",
+      "title": "AC Service & Repair",
+      "from": "Priya Sharma",
+      "dateTime": 1730250000000,
+      "amount": 799,
+      "type": "earning"
+    },
+    {
+      "id": "txn-007",
+      "partnerId": "partner-001",
+      "title": "Payout to Bank",
+      "from": "Wallet",
+      "dateTime": 1732060800000,
+      "amount": 5000,
+      "type": "payout",
+      "toBankAccount": {
+        "accountHolder": "Rajesh Kumar",
+        "accountNumber": "1234567890123",
+        "ifsc": "HDFC0001234",
+        "bankName": "HDFC Bank"
+      }
+    },
+    {
+      "id": "txn-008",
+      "partnerId": "partner-001",
+      "title": "Payout to Bank",
+      "from": "Wallet",
+      "dateTime": 1730419200000,
+      "amount": 3000,
+      "type": "payout",
+      "toBankAccount": {
+        "accountHolder": "Rajesh Kumar",
+        "accountNumber": "1234567890123",
+        "ifsc": "HDFC0001234",
+        "bankName": "HDFC Bank"
+      }
+    },
+    {
+      "id": "txn-009",
+      "partnerId": "partner-001",
+      "bookingId": "book-009",
+      "title": "Kitchen Deep Cleaning",
+      "from": "Amit Patel",
+      "dateTime": 1729900800000,
+      "amount": 1104,
+      "type": "earning"
+    },
+    {
+      "id": "txn-010",
+      "partnerId": "partner-001",
+      "bookingId": "book-010",
+      "title": "Pipe Installation & Repair",
+      "from": "Sneha Desai",
+      "dateTime": 1729728000000,
+      "amount": 1439,
+      "type": "earning"
+    },
+    {
+      "id": "txn-011",
+      "partnerId": "partner-001",
+      "bookingId": "book-011",
+      "title": "Interior Wall Painting",
+      "from": "Vikram Singh",
+      "dateTime": 1729555200000,
+      "amount": 2499,
+      "type": "earning"
+    },
+    {
+      "id": "txn-012",
+      "partnerId": "partner-001",
+      "bookingId": "book-012",
+      "title": "AC Service & Repair",
+      "from": "Neha Gupta",
+      "dateTime": 1729382400000,
+      "amount": 799,
+      "type": "earning"
+    },
+    {
+      "id": "txn-013",
+      "partnerId": "partner-001",
+      "bookingId": "book-013",
+      "title": "Washing Machine Repair",
+      "from": "Rahul Mehta",
+      "dateTime": 1729209600000,
+      "amount": 479,
+      "type": "earning"
+    },
+    {
+      "id": "txn-014",
+      "partnerId": "partner-001",
+      "bookingId": "book-014",
+      "title": "Sofa Cleaning",
+      "from": "Anjali Reddy",
+      "dateTime": 1729036800000,
+      "amount": 899,
+      "type": "earning"
+    }
+  ]
+}
